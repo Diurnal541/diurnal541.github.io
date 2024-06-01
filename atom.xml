@@ -6,7 +6,7 @@
   <link href="https://diurnal541.github.io/atom.xml" rel="self"/>
   
   <link href="https://diurnal541.github.io/"/>
-  <updated>2024-05-31T15:20:00.991Z</updated>
+  <updated>2024-06-01T04:00:21.301Z</updated>
   <id>https://diurnal541.github.io/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Test</title>
+    <link href="https://diurnal541.github.io/2024/06/01/Test/"/>
+    <id>https://diurnal541.github.io/2024/06/01/Test/</id>
+    <published>2024-06-01T03:57:02.000Z</published>
+    <updated>2024-06-01T04:00:21.301Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="This-is-a-test-blog"><a href="#This-is-a-test-blog" class="headerlink" title="This is a test blog"></a>This is a test blog</h1><p><strong>hello</strong></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;This-is-a-test-blog&quot;&gt;&lt;a href=&quot;#This-is-a-test-blog&quot; class=&quot;headerlink&quot; title=&quot;This is a test blog&quot;&gt;&lt;/a&gt;This is a test blog&lt;/h1&gt;&lt;p&gt;&lt;s</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Hello World</title>
