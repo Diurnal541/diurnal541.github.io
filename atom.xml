@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Mouse</title>
   
-  
+  <subtitle>我的知识黄金小屋</subtitle>
   <link href="https://diurnal541.github.io/atom.xml" rel="self"/>
   
   <link href="https://diurnal541.github.io/"/>
