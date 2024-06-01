@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Code</title>
+  <title>Mouse</title>
   
   
   <link href="https://diurnal541.github.io/atom.xml" rel="self"/>
@@ -10,7 +10,7 @@
   <id>https://diurnal541.github.io/</id>
   
   <author>
-    <name>Diurnal</name>
+    <name>Diurnal541</name>
     
   </author>
   
