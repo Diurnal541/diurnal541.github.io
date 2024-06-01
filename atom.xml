@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Mouse</title>
+  
+  
+  <link href="https://diurnal541.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://diurnal541.github.io/"/>
+  <updated>2024-06-01T04:15:42.854Z</updated>
+  <id>https://diurnal541.github.io/</id>
+  
+  <author>
+    <name>Diurnal541</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hello</title>
+    <link href="https://diurnal541.github.io/2024/06/01/Hello/"/>
+    <id>https://diurnal541.github.io/2024/06/01/Hello/</id>
+    <published>2024-06-01T04:14:35.000Z</published>
+    <updated>2024-06-01T04:15:42.854Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="我的第一篇博客"><a href="#我的第一篇博客" class="headerlink" title="我的第一篇博客"></a>我的第一篇博客</h2><p>你好</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;我的第一篇博客&quot;&gt;&lt;a href=&quot;#我的第一篇博客&quot; class=&quot;headerlink&quot; title=&quot;我的第一篇博客&quot;&gt;&lt;/a&gt;我的第一篇博客&lt;/h2&gt;&lt;p&gt;你好&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    
+    <category term="blog1" scheme="https://diurnal541.github.io/tags/blog1/"/>
+    
+  </entry>
+  
+</feed>
