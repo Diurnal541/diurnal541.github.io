@@ -66,4 +66,39 @@
         <tag>文件上传</tag>
       </tags>
   </entry>
+  <entry>
+    <title>日志文件包含</title>
+    <url>/2024/06/05/%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/</url>
+    <content><![CDATA[<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><blockquote>
+<p>日志文件包含漏洞属于本地文件包含，由于服务器过滤不严格或者是服务器的配置不当导致用户可以进入内网，本来常规用户是无法访问这些文件的，但是由于发起访问请求的是服务器本身，从而导致了用户可以进行任意文件读取</p>
+<p>apache服务器日志文件位置：&#x2F;var&#x2F;log&#x2F;apache&#x2F;access.log</p>
+<p>nginx服务器日志文件位置：&#x2F;var&#x2F;log&#x2F;nginx&#x2F;access.log或者&#x2F;var&#x2F;log&#x2F;nginx&#x2F;error.log</p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$file</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>];</span><br><span class="line">    <span class="variable">$file</span> = <span class="title function_ invoke__">str_replace</span>(<span class="string">&quot;php&quot;</span>, <span class="string">&quot;???&quot;</span>, <span class="variable">$file</span>);</span><br><span class="line">    <span class="variable">$file</span> = <span class="title function_ invoke__">str_replace</span>(<span class="string">&quot;data&quot;</span>, <span class="string">&quot;???&quot;</span>, <span class="variable">$file</span>);</span><br><span class="line">    <span class="keyword">include</span>(<span class="variable">$file</span>);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>以ctfshow的web80为例，首先查看服务器，为nginx</p>
+<img src="/2024/06/05/%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/image-20240605211625682.png" class="" title="image-20240605211625682">
+
+<p>输入?file&#x3D;&#x2F;var&#x2F;log&#x2F;nginx&#x2F;access.log，并使用BP抓包，得到响应中都是User-Agent的信息</p>
+<img src="/2024/06/05/%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/image-20240605211657460.png" class="" title="image-20240605211657460">
+
+<p>那么可以在User-Agent中写入一句话木马，重新抓一个初始页面的包，并写入一句话木马，放包</p>
+<img src="/2024/06/05/%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/image-20240605211710001.png" class="" title="image-20240605211710001">
+
+<p>再次访问&#x2F;var&#x2F;log&#x2F;nginx&#x2F;access.log，并在POST中提交1&#x3D;system(“ls”);</p>
+<img src="/2024/06/05/%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/image-20240605211722730.png" class="" title="image-20240605211722730">
+
+<img src="/2024/06/05/%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/image-20240605211733717.png" class="" title="image-20240605211733717">
+
+<p>成功执行命令</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>web安全</category>
+      </categories>
+      <tags>
+        <tag>文件包含</tag>
+      </tags>
+  </entry>
 </search>
