@@ -82,14 +82,6 @@
       </tags>
   </entry>
   <entry>
-    <title>文件上传之绕过getimagesize()验证</title>
-    <url>/2024/06/09/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B9%8B%E7%BB%95%E8%BF%87getimagesize-%E9%AA%8C%E8%AF%81/</url>
-    <content><![CDATA[]]></content>
-      <tags>
-        <tag>文件上传</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>文件上次之二次渲染绕过</title>
     <url>/2024/06/01/%E6%96%87%E4%BB%B6%E4%B8%8A%E6%AC%A1%E4%B9%8B%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87/</url>
     <content><![CDATA[<h1 id="什么是二次渲染"><a href="#什么是二次渲染" class="headerlink" title="什么是二次渲染"></a>什么是二次渲染</h1><blockquote>
